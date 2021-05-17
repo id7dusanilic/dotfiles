@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# First argument chooses which webcam if more are present
+VIDEO_SOURCE=$1
+
+# By default, /dev/video0 is used
+[ -z $VIDEO_SOURCE ] && VIDEO_SOURCE=0
+
+# Start streaming webcam with mpv
+mpv av://v4l2:/dev/video$VIDEO_SOURCE --profile=low-latency --untimed &

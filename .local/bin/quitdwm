@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# A dmenu wrapper script for system functions.
+
+cmds="\
+ lock			slock
+ leave dwm		kill -TERM $(pgrep -u $USER "\bdwm$")
+ renew dwm		kill -HUP $(pgrep -u $USER "\bdwm$")
+鈴 hibernate	${hib:-systemctl suspend-then-hibernate -i}
+鈴 suspend		${hib:-systemctl suspend}
+勒 reboot		${reb:-reboot}
+ shutdown		${shut:-shutdown -h now}"
+
+choice="$(echo "$cmds" | cut -f 1 | dmenu -l 10)" || exit 1
+
+`echo "$cmds" | grep "^$choice	" | cut -f 2-`

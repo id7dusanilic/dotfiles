@@ -1,0 +1,12 @@
+# Zathura configuration file
+# See man `man zathurarc'
+
+# Open document in fit-width mode by default
+set adjust-open width
+
+# Default font size is 9, which is hard to see on small screens
+set font "monospace normal 14"
+
+# Keybindigs
+map g goto
+map w adjust_window width 
