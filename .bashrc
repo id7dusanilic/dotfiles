@@ -1,104 +1,51 @@
-# Path to your oh-my-bash installation.
-export OSH=/home/minimalist/.oh-my-bash
-
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-bash is loaded.
-OSH_THEME="pro"
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
-HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_OSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $OSH/custom?
-# OSH_CUSTOM=/path/to/new-custom-folder
-
-# Which completions would you like to load? (completions can be found in ~/.oh-my-bash/completions/*)
-# Custom completions may be added to ~/.oh-my-bash/custom/completions/
-# Example format: completions=(ssh git bundler gem pip pip3)
-# Add wisely, as too many completions slow down shell startup.
-completions=(
-  git
-  composer
-  ssh
-)
-
-# Which aliases would you like to load? (aliases can be found in ~/.oh-my-bash/aliases/*)
-# Custom aliases may be added to ~/.oh-my-bash/custom/aliases/
-# Example format: aliases=(vagrant composer git-avh)
-# Add wisely, as too many aliases slow down shell startup.
-aliases=(
-  general
-  example
-)
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-bash/plugins/*)
-# Custom plugins may be added to ~/.oh-my-bash/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  git
-  bashmarks
-)
-
-source $OSH/oh-my-bash.sh
-
-# User configuration
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='nvim'
-fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-bash libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-bash
-# users are encouraged to define aliases within the OSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
 #
-# Example aliases
-# alias bashconfig="mate ~/.bashrc"
-# alias ohmybash="mate ~/.oh-my-bash"
-PATH=$PATH:~/.config/vifm/scripts
-alias dotfiles='/usr/bin/git --git-dir=/home/minimalist/.dotfiles --work-tree=/home/minimalist'
+# ~/.bashrc
+#
+
+# Do not source if the shell is not interactive
+[[ $- != *i* ]] && return
+
+# Enable bash_completion
+[ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
+
+# General aliases to improve terminal
+alias cp='cp -iv'				# confirm before overwriting something
+alias cp='mv -iv'				# confirm before overwriting something
+alias ls='ls --color=always'	# add color to ls
+alias l.='ls -ld .*'			# list hidden files in long format
+alias ll='ls -l '				# list in long format
+alias la='ls -lAh'				# list all files in long format
+
+# Misc aliases
+alias fix_vmware='sudo vmware-modconfig --console --install-all'
+alias dotfiles='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+
+# Allow root X Server access
+xhost +local:root > /dev/null 2>&1
+
+# Bash won't get SIGWINCH if another process is in the foreground.
+# Enable checkwinsize so that bash will check the terminal size when
+# it regains control.
+shopt -s checkwinsize
+
+# Enable history appending instead of overwriting
+shopt -s histappend
+
+# Default text editor
+EDITOR=/usr/bin/nvim
+
+# Expand PATH variable
+# PATH=$PATH:/some/path
+
+# History settings
+export HISTCONTROL=ignoredups	# ignore duplicates in command history
+export HISTSIZE=1000			# increase history size to 1000 lines
+# Create the directory if it doesn't exist first
+[ -d "$XDG_DATA_HOME/bash" ] || mkdir -p $XDG_DATA_HOME/bash
+export HISTFILE="$XDG_DATA_HOME/bash/history"	# Declutter $HOME
+
+# Prompt style
+PS1="\u: \W $ "
+# PS1='\[\033[01;32m\][\u@\h\[\033[01;37m\] \W\[\033[01;32m\]]\$\[\033[00m\] '
+# PS1='\[\033[01;32m\][\u \W\[\033[01;32m\]]\$\[\033[00m\] '
+
