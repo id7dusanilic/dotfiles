@@ -10,7 +10,7 @@
 
 # General aliases to improve terminal
 alias cp='cp -iv'				# confirm before overwriting something
-alias cp='mv -iv'				# confirm before overwriting something
+alias mv='mv -iv'				# confirm before overwriting something
 alias ls='ls --color=always'	# add color to ls
 alias l.='ls -ld .*'			# list hidden files in long format
 alias ll='ls -l '				# list in long format
@@ -36,7 +36,7 @@ export EDITOR=/usr/bin/nvim
 export VISUAL=/usr/bin/nvim
 
 # Expand PATH variable
-# PATH=$PATH:/some/path
+export PATH=$PATH:$HOME/.local/bin/dmenu_scripts
 
 # History settings
 export HISTCONTROL=ignoredups	# ignore duplicates in command history

@@ -1,0 +1,67 @@
+#!/bin/sh
+
+# This script is used to control wifi state and connections with dmenu
+
+set -euo pipefail
+
+select_wifi () {
+	ssid=$(nmcli device wifi list \
+			| sed -n '1!p' \
+			| cut -b 28- \
+			| sed 's/ \{2,\}/	/g' \
+			| awk -F'	' '{print $6"  "$1}' \
+			| expand -t 4 \
+			| dmenu -p "Select Wifi  :" -l 20 \
+			| sed 's/ \+/ /g' \
+			| cut -d' ' -f 2-)
+	# echo $ssid
+
+	[ -z "${ssid}" ] && exit 0
+	pass=$(echo "" | dmenu -P -p "Enter Password  :")
+	# echo $pass
+
+	nmcli device wifi connect "${ssid}" password "${pass}"
+	# Wait for 10 seconds and display status
+	sleep 10
+	wifi_status
+}
+
+wifi_status () {
+	# This prints out the password with the status message
+	# status_msg="$(nmcli device wifi show)" \
+	#	|| status_msg="Wifi is turned off"
+
+	# This hides the password
+	status_msg="$(nmcli device wifi show | sed -n '3!p')" \
+		|| status_msg="Wifi is turned off"
+
+	notify-send "Wifi Status" "${status_msg}"
+}
+
+turn_on_prompt="Turn on"
+turn_off_prompt="Turn off"
+select_prompt="Select"
+status_prompt="Print status"
+
+wifi_on=$(nmcli radio wifi)
+[ ${wifi_on} == "enabled" ] && prompt="${turn_off_prompt}" || prompt="${turn_on_prompt}"
+
+choice=$(echo -e "${prompt}\n${select_prompt}\n${status_prompt}" | dmenu -l 20 -p "  Options:")
+
+case "$choice" in
+	"${turn_on_prompt}")
+		nmcli radio wifi on
+		;;
+	"${turn_off_prompt}")
+		nmcli radio wifi off
+		;;
+	"${select_prompt}")
+		select_wifi
+		;;
+	"${status_prompt}")
+		wifi_status
+		;;
+	*)
+		exit 0
+		;;
+esac
