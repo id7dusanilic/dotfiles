@@ -32,7 +32,8 @@ shopt -s checkwinsize
 shopt -s histappend
 
 # Default text editor
-EDITOR=/usr/bin/nvim
+export EDITOR=/usr/bin/nvim
+export VISUAL=/usr/bin/nvim
 
 # Expand PATH variable
 # PATH=$PATH:/some/path
