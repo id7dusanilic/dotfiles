@@ -78,6 +78,7 @@ set mouse=a
 " Keybindings
 nmap ; :
 nmap q :q<CR>
+vmap q <Esc>
 
 " Shortcutting split navigation, saving a keypress:
 map <C-h> <C-w>h
