@@ -7,11 +7,9 @@ xrandr --output HDMI-2 --left-of eDP-1
 # /usr/lib/xfce4/notifyd/xfce4-notifyd &
 # Allow transparent windows
 xcompmgr &
-# Set keyboard shortuct for changing layouts
+# Initialize keyboard layout
 setxkbmap -layout us
 # Initialize the current_lang file
-echo us > $HOME/.dwmblocks/current_lang 
-# Start data usage monitor
-# datausage &
+echo us > $HOME/.dwmblocks/current_lang
 # Start the status bar
 dwmblocks &

@@ -3,7 +3,7 @@
 #
 
 # Do not source if the shell is not interactive
-[[ $- != *i* ]] && return
+# [[ $- != *i* ]] && return
 
 # Enable bash_completion
 [ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
@@ -34,6 +34,9 @@ shopt -s histappend
 # Default text editor
 export EDITOR=/usr/bin/nvim
 export VISUAL=/usr/bin/nvim
+
+# Default browser
+export BROWSER=/usr/bin/brave
 
 # Expand PATH variable
 export PATH=$PATH:$HOME/.local/bin/dmenu_scripts
