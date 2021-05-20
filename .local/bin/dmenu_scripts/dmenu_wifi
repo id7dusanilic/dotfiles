@@ -17,6 +17,15 @@ select_wifi () {
 	# echo $ssid
 
 	[ -z "${ssid}" ] && exit 0
+
+	[ "${ssid}" == "$(active_ssid)" ] && exit 0
+
+	echo "$(previously_connected)" | grep "${ssid}$" \
+		&& nmcli connection up ${ssid} \
+		&& sleep 5 \
+		&& wifi_status \
+		&& exit 0
+
 	pass=$(echo "" | dmenu -P -p "Enter Password  :")
 	# echo $pass
 
@@ -38,15 +47,39 @@ wifi_status () {
 	notify-send "Wifi Status" "${status_msg}"
 }
 
+previously_connected () {
+	echo "$(nmcli connection show \
+				| sed -n '1,2!p' \
+				| sed 's/ \{2,\}/	/g' \
+				| cut -f 1)"
+}
+
+active_ssid () {
+	echo "$(nmcli connection show --active \
+				| sed -n '1!p' \
+				| sed 's/ \{2,\}/	/g' \
+				| cut -f 1)"
+}
+
 turn_on_prompt="Turn on"
 turn_off_prompt="Turn off"
 select_prompt="Select"
 status_prompt="Print status"
+show_password_prompt="Show password"
 
 wifi_on=$(nmcli radio wifi)
-[ ${wifi_on} == "enabled" ] && prompt="${turn_off_prompt}" || prompt="${turn_on_prompt}"
 
-choice=$(echo -e "${prompt}\n${select_prompt}\n${status_prompt}" | dmenu -l 20 -p "  Options:")
+[ ${wifi_on} == "enabled" ] \
+&&	all_prompts="\
+${turn_off_prompt}
+${select_prompt}
+${status_prompt}
+${show_password_prompt}" \
+||	all_prompts="\
+${turn_on_prompt}
+${select_prompt}"
+
+choice=$(echo -e "${all_prompts}" | dmenu -l 20 -p "  Options:")
 
 case "$choice" in
 	"${turn_on_prompt}")
@@ -60,6 +93,11 @@ case "$choice" in
 		;;
 	"${status_prompt}")
 		wifi_status
+		;;
+	"${show_password_prompt}")
+		[ -z "$(which alacritty)" ] \
+		&& notify-send "Wifi Status" "$(nmcli device wifi show-password)" \
+		|| alacritty --hold -e nmcli device wifi show-password
 		;;
 	*)
 		exit 0
