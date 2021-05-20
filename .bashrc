@@ -38,6 +38,9 @@ export VISUAL=/usr/bin/nvim
 # Default browser
 export BROWSER=/usr/bin/brave
 
+# Default terminal emulator, to be used by other scripts
+export TERM_EMULATOR=/usr/bin/alacritty
+
 # Expand PATH variable
 export PATH=$PATH:$HOME/.local/bin/dmenu_scripts
 

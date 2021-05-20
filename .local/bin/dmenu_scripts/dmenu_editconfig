@@ -20,4 +20,5 @@ choice=$(echo "${config_files}" | cut -f 1 | dmenu -l 20 -p "Choose a config fil
 
 config_path=$(echo "${config_files}" | sed 's/ \+/	/g' | grep "^${choice}	" | cut -f 2-)
 
-st -e $EDITOR $config_path &
+[ -n ${TERM_EMULATOR} ] && EMULATOR=${TERM_EMULATOR} || EMULATOR=st
+${EMULATOR} -e ${EDITOR} ${config_path}
