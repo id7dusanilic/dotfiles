@@ -19,6 +19,7 @@ alias la='ls -lAh'				# list all files in long format
 # Misc aliases
 alias fix_vmware='sudo vmware-modconfig --console --install-all'
 alias dotfiles='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+alias ec='fzf_editconfig'
 
 # Allow root X Server access
 xhost +local:root > /dev/null 2>&1
@@ -30,6 +31,9 @@ shopt -s checkwinsize
 
 # Enable history appending instead of overwriting
 shopt -s histappend
+
+# Fuzzy finder default options
+export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 
 # Default text editor
 export EDITOR=/usr/bin/nvim

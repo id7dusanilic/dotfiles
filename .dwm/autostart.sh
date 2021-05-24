@@ -10,6 +10,6 @@ xcompmgr &
 # Initialize keyboard layout
 setxkbmap -layout us
 # Initialize the current_lang file
-echo us > $HOME/.dwmblocks/current_lang
+echo us > $HOME/.local/share/current_lang
 # Start the status bar
 dwmblocks &
