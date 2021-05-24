@@ -1,7 +1,7 @@
 # Set background
-feh --no-fehbg --bg-fill '/home/minimalist/Pictures/Wallpapers/road2.jpg'
+set_wallpaper
 # Monitor settings
-xrandr --output HDMI-2 --left-of eDP-1
+xrandr --output HDMI1 --left-of eDP1
 # Start the notification-daemon
 /usr/lib/notification-daemon-1.0/notification-daemon &
 # /usr/lib/xfce4/notifyd/xfce4-notifyd &

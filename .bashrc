@@ -39,10 +39,10 @@ export VISUAL=/usr/bin/nvim
 export BROWSER=/usr/bin/brave
 
 # Default terminal emulator, to be used by other scripts
-export TERM_EMULATOR=/usr/bin/alacritty
+export TERM_EMULATOR=/usr/bin/kitty
 
 # Expand PATH variable
-export PATH=$PATH:$HOME/.local/bin/dmenu_scripts
+export PATH=$PATH:$HOME/.local/bin/dmenu_scripts:$HOME/.local/bin/scripts
 
 # History settings
 export HISTCONTROL=ignoredups	# ignore duplicates in command history
