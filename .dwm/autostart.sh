@@ -11,5 +11,7 @@ xcompmgr &
 setxkbmap -layout us
 # Initialize the current_lang file
 echo us > $HOME/.local/share/current_lang
+# Initialize the previous_lang file
+echo rs > $HOME/.local/share/previous_lang
 # Start the status bar
 dwmblocks &

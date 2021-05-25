@@ -6,18 +6,19 @@
 CURRENT_LANG_PATH="$HOME/.local/share/current_lang"
 CURRENT_LANG=$(cat $CURRENT_LANG_PATH)
 PREV_LANG_PATH="$HOME/.local/share/previous_lang"
+PREV_LANG=$(cat $PREV_LANG_PATH)
 
 echo $CURRENT_LANG > $PREV_LANG_PATH
-case $CURRENT_LANG in
-    "us")
+case $PREV_LANG in
+    "rs")
         CURRENT_LANG="rs"
 		setxkbmap -layout rs -variant latin
         ;;
-    "rs")
+    "pc")
         CURRENT_LANG="pc"
 		setxkbmap -layout rs
         ;;
-    "pc")
+    "us")
         CURRENT_LANG="us"
 		setxkbmap -layout us
         ;;
