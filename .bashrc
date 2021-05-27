@@ -43,7 +43,7 @@ export VISUAL=/usr/bin/nvim
 export BROWSER=/usr/bin/brave
 
 # Default terminal emulator, to be used by other scripts
-export TERM_EMULATOR=/usr/bin/kitty
+export TERM_EMULATOR=/usr/local/bin/st
 
 # Expand PATH variable
 export PATH=$PATH:$HOME/.local/bin/dmenu_scripts:$HOME/.local/bin/scripts
@@ -56,7 +56,8 @@ export HISTSIZE=1000			# increase history size to 1000 lines
 export HISTFILE="$XDG_DATA_HOME/bash/history"	# Declutter $HOME
 
 # Prompt style
-PS1="\u: \W $ "
-# PS1='\[\033[01;32m\][\u@\h\[\033[01;37m\] \W\[\033[01;32m\]]\$\[\033[00m\] '
-# PS1='\[\033[01;32m\][\u \W\[\033[01;32m\]]\$\[\033[00m\] '
+export PS1="\[$(tput bold)\]\[$(tput setaf 2)\]>_ \u: \W \\$ \[$(tput sgr0)\]"
+# export PS1="\u: \W $ "
+# export PS1='\[\033[01;32m\][\u@\h\[\033[01;37m\] \W\[\033[01;32m\]]\$\[\033[00m\] '
+# export PS1='\[\033[01;32m\][\u \W\[\033[01;32m\]]\$\[\033[00m\] '
 
