@@ -97,7 +97,7 @@ case "$choice" in
 	"${show_password_prompt}")
 		[ -z "$(which alacritty)" ] \
 		&& notify-send "Wifi Status" "$(nmcli device wifi show-password)" \
-		|| alacritty --class FloatingTerminal --hold -e nmcli device wifi show-password
+		|| alacritty --class FloatingWindow --hold -e nmcli device wifi show-password
 		;;
 	*)
 		exit 0
