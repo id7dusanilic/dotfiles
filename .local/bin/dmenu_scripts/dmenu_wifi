@@ -5,22 +5,18 @@
 set -euo pipefail
 
 select_wifi () {
-	ssid=$(nmcli device wifi list \
+	ssid=$(nmcli -f ssid,bars,security device wifi list \
 			| sed -n '1!p' \
-			| cut -b 28- \
-			| sed 's/ \{2,\}/	/g' \
-			| awk -F'	' '{print $6"  "$1}' \
-			| expand -t 4 \
 			| dmenu -p "Select Wifi  :" -l 20 \
-			| sed 's/ \+/ /g' \
-			| cut -d' ' -f 2-)
+			| sed 's/ \{2,\}/	/g' \
+			| cut -f 1)
 	# echo $ssid
 
 	[ -z "${ssid}" ] && exit 0
 
-	[ "${ssid}" == "$(active_ssid)" ] && exit 0
+	echo -e "$(active_ssid)" | grep -Fx "${ssid}" && exit 0
 
-	echo "$(previously_connected)" | grep "${ssid}$" \
+	echo -e "$(previously_connected)" | grep -Fx "${ssid}" \
 		&& nmcli connection up ${ssid} \
 		&& sleep 5 \
 		&& wifi_status \
@@ -48,17 +44,11 @@ wifi_status () {
 }
 
 previously_connected () {
-	echo "$(nmcli connection show \
-				| sed -n '1,2!p' \
-				| sed 's/ \{2,\}/	/g' \
-				| cut -f 1)"
+	echo -e "$(nmcli -f name connection show | awk '{$1=$1;print}')"
 }
 
 active_ssid () {
-	echo "$(nmcli connection show --active \
-				| sed -n '1!p' \
-				| sed 's/ \{2,\}/	/g' \
-				| cut -f 1)"
+	echo -e "$(nmcli -f name connection show --active | awk '{$1=$1;print}')"
 }
 
 turn_on_prompt="Turn on"
@@ -95,9 +85,9 @@ case "$choice" in
 		wifi_status
 		;;
 	"${show_password_prompt}")
-		[ -z "$(which alacritty)" ] \
+		[ -z "$(which st)" ] \
 		&& notify-send "Wifi Status" "$(nmcli device wifi show-password)" \
-		|| alacritty --class FloatingWindow --hold -e nmcli device wifi show-password
+		|| st -n NotifyTerminal -g 37x25 -e sh -c 'nmcli device wifi show-password; sleep 5'
 		;;
 	*)
 		exit 0
