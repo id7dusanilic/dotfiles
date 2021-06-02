@@ -52,6 +52,12 @@ let g:jedi#popup_on_dot = 0
 
 
 "****************************************************************************
+" Autocmds
+
+" Update keyboard bindings when sxhkdrc is updated
+autocmd BufWritePost *sxhkdrc !killall sxhkd; sxhkd &
+
+"****************************************************************************
 " Basic settings
 
 " Encoding

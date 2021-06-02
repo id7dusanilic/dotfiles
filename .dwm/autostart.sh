@@ -1,5 +1,7 @@
 # Set background
 set_wallpaper
+# Setup keybindings
+sxhkd -m 1 &
 # Monitor settings
 xrandr --output HDMI1 --primary --left-of eDP1
 # Start the notification-daemon
@@ -13,5 +15,7 @@ setxkbmap -layout us
 echo us > $HOME/.local/share/current_lang
 # Initialize the previous_lang file
 echo rs > $HOME/.local/share/previous_lang
+# Start pulse deamon to update status bar on audio events
+pulse_daemon &
 # Start the status bar
 dwmblocks &
