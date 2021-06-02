@@ -32,7 +32,7 @@ super + F1
 
 # Audio control
 XF86AudioMute
-	pamixer -t; sigdwmblocks 3
+	pamixer -t
 
 XF86Audio{RaiseVolume,LowerVolume}
-	pamixer --allow-boost {-i,-d} 5; sigdwmblocks 3
+	pamixer --allow-boost {-i,-d} 5
