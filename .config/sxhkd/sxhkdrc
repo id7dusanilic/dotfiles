@@ -1,0 +1,38 @@
+# Open web browser
+super + w
+	$BROWSER
+
+# Open file manager
+super + r
+	$TERM_EMULATOR -e ranger
+
+# Switch to previuos keyboard layout
+super + space
+	previous_kb_layout
+
+# Choose a keyboard layout
+super + control + space
+	dmenu_keyboard_layout
+
+# System options
+super + shift +q
+	dmenu_system
+
+# Pipe clipboard to a program
+super + shift + backslash
+	dmenu_clipboard_run
+
+# Lock screen
+super + shift + l
+	slock
+
+# Wifi options
+super + F1
+	dmenu_wifi
+
+# Audio control
+XF86AudioMute
+	pamixer -t; sigdwmblocks 3
+
+XF86Audio{RaiseVolume,LowerVolume}
+	pamixer --allow-boost {-i,-d} 5; sigdwmblocks 3
