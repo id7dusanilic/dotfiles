@@ -30,6 +30,18 @@ super + shift + l
 super + F1
 	dmenu_wifi
 
+# Edit common config files
+super + F2
+	dmenu_editconfig
+
+# Passmenu
+super + F3
+	passmenu
+
+# Start dmenu_run with history
+super + shift + p
+	dmenu_run_history
+
 # Audio control
 XF86AudioMute
 	pamixer -t

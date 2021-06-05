@@ -1,4 +1,0 @@
-#!/bin/sh
-
-# Start Code Composer Studio with the chosen GTK_THEME
-exec env GTK_THEME=Adwaita /opt/ti/ccs1030/ccs/eclipse/ccstudio
