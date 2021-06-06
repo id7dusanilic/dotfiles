@@ -11,11 +11,7 @@ xrandr --output HDMI1 --primary --left-of eDP1
 # Allow transparent windows
 xcompmgr &
 # Initialize keyboard layout
-setxkbmap -layout us
-# Initialize the current_lang file
-echo us > $HOME/.local/share/current_lang
-# Initialize the previous_lang file
-echo rs > $HOME/.local/share/previous_lang
+keyboard_layout --set us
 # Start pulse deamon to update status bar on audio events
 pulse_daemon &
 # Start the status bar

@@ -8,11 +8,11 @@ super + r
 
 # Switch to previuos keyboard layout
 super + space
-	keyboard_layout --prev
+	keyboard_layout --prev && sigdwmblocks 2
 
 # Choose a keyboard layout
 super + control + space
-	keyboard_layout --set
+	keyboard_layout --set && sigdwmblocks 2
 
 # System options
 super + shift +q
@@ -46,5 +46,5 @@ super + shift + p
 XF86AudioMute
 	pamixer -t
 
-XF86Audio{RaiseVolume,LowerVolume}
+XF86Audio{Raise,Lower}Volume
 	pamixer --allow-boost {-i,-d} 5
