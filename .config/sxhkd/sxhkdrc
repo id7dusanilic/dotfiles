@@ -8,11 +8,11 @@ super + r
 
 # Switch to previuos keyboard layout
 super + space
-	previous_kb_layout
+	keyboard_layout --prev
 
 # Choose a keyboard layout
 super + control + space
-	dmenu_keyboard_layout
+	keyboard_layout --set
 
 # System options
 super + shift +q

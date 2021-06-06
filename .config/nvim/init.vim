@@ -11,6 +11,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'Raimondi/delimitMate'
 Plug 'davidhalter/jedi-vim'
+Plug 'vim-python/python-syntax'
+Plug 'kovetskiy/sxhkd-vim'
 call plug#end()
 "****************************************************************************
 
