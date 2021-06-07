@@ -4,8 +4,8 @@
 
 cmds="\
  lock			slock
- leave dwm		kill -TERM $(pgrep -u $USER "\bdwm$")
- renew dwm		kill -HUP $(pgrep -u $USER "\bdwm$")
+ leave			kill -TERM $(pgrep -u $USER "\b$XDG_SESSION_DESKTOP$")
+ renew			kill -HUP $(pgrep -u $USER "\b$XDG_SESSION_DESKTOP$")
 鈴 hibernate	${hib:-systemctl suspend-then-hibernate -i}
 鈴 suspend		${hib:-systemctl suspend}
 勒 reboot		${reb:-reboot}
