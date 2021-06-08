@@ -38,6 +38,10 @@ super + F2
 super + F3
 	passmenu
 
+# Edit scripts
+super + F4
+	$TERM_EMULATOR -e fzf_editscripts
+
 # Start dmenu_run with history
 super + shift + p
 	dmenu_run_history

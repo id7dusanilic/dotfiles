@@ -85,9 +85,7 @@ case "$choice" in
 		wifi_status
 		;;
 	"${show_password_prompt}")
-		[ -z "$(which st)" ] \
-		&& notify-send "Wifi Status" "$(nmcli device wifi show-password)" \
-		|| st -n NotifyTerminal -g 37x25 -e sh -c 'nmcli device wifi show-password; sleep 5'
+		notify-send "Wifi Status" "$(nmcli device wifi show-password)" \
 		;;
 	*)
 		exit 0
