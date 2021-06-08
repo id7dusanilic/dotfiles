@@ -8,3 +8,4 @@ export WGETRC="$HOME/.config/wget/wgetrc"
 # export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 export PYLINTHOME="$XDG_CACHE_HOME"/pylint
+export SSB_HOME="$XDG_DATA_HOME/zoom"
