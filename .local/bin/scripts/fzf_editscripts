@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# This script displays a selection of scripts to edit with
+# a text editor
+
+choice=$(find $HOME/.local/bin/scripts $HOME/.local/bin/dmenu_scripts -type f | fzf) || exit 1
+
+${EDITOR} ${choice}
