@@ -6,6 +6,10 @@ super + w
 super + r
 	$TERM_EMULATOR -e ranger
 
+# Open gvim
+super + e
+	gvim
+
 # Switch to previuos keyboard layout
 super + space
 	keyboard_layout --prev && sigdwmblocks 2
