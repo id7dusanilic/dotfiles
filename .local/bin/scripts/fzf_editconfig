@@ -6,6 +6,7 @@
 config_files="\
 bashrc		$HOME/.bashrc
 nvim		$HOME/.config/nvim/init.vim
+sxhkd		$HOME/.config/sxhkd/sxhkdrc
 ranger		$HOME/.config/ranger/rc.conf
 zathura		$HOME/.config/zathura/zathurarc
 mpv			$HOME/.config/mpv/input.conf
