@@ -1,66 +1,88 @@
-"****************************************************************************
-" Plugins section
+" Plugins section *************************************************************
 " Using vim-plug to handle plugins
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'preservim/nerdtree'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'kristijanhusak/defx-icons'
 Plug 'ryanoasis/vim-devicons'
-Plug 'tpope/vim-commentary'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'bronson/vim-trailing-whitespace'
-Plug 'Raimondi/delimitMate'
-Plug 'davidhalter/jedi-vim'
 Plug 'vim-python/python-syntax'
 Plug 'kovetskiy/sxhkd-vim'
+Plug 'neoclide/coc.nvim'
+Plug 'sainnhe/edge'
+Plug 'scrooloose/nerdcommenter'
 call plug#end()
-"****************************************************************************
 
-"****************************************************************************
-" NERDTree settings
-" Keymaps
-nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
-" nnoremap <C-f> :NERDTreeFind<CR>
+" Additional useful plugins
 
-" Start NERDTree when Vim is started without file arguments.
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+" Plug 'zxqfl/tabnine-vim'
+" Plug 'davidhalter/jedi-vim'
+" Plug 'ycm-core/YouCompleteMe'
+" Plug 'preservim/nerdtree'
+" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+" Plug 'bronson/vim-trailing-whitespace'
+" Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'kristijanhusak/defx-icons'
 
-" Open the existing NERDTree on each new tab.
-autocmd BufWinEnter * silent NERDTreeMirror
+" coc Configuration ***********************************************************
+let g:coc_global_extensions = [
+	\ 'coc-sh',
+	\ 'coc-jedi',
+	\ 'coc-pyright',
+	\ 'coc-pairs',
+	\ 'coc-cmake',
+	\ 'coc-markdownlint',
+	\ 'coc-snippets'
+	\ ]
 
-let g:NERDTreeChDirMode=2
-let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
-let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
-let g:NERDTreeShowBookmarks=0
-let g:nerdtree_tabs_focus_on_files=1
-let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
-let g:NERDTreeWinSize = 31
-"****************************************************************************
+" Use tab for trigger completion and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab
+" is not mapped by other plugin before putting this 
+" into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>
 
-"****************************************************************************
-" Airline settings
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
-" Displaying tabs
-let g:airline#extensions#tabline#enabled = 1
-"****************************************************************************
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
-"****************************************************************************
-" jedi-vim
-let g:jedi#popup_on_dot = 0
-"****************************************************************************
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
 
+" defx Configuration **********************************************************
+runtime defx.vim
+nnoremap <F3> :Defx<CR>
 
-"****************************************************************************
-" Autocmds
+" Airline settings ************************************************************
+runtime airline.vim
+
+" Nerd commenter settings *****************************************************
+let g:NERDSpaceDelims = 1
+let g:NERDCompactSexyComs = 1
+let g:NERDDefaultAlign = 'left'
+let g:NERDCustomDelimiters = { 'c': { 'left': '/*','right': '*/' } }
+let g:NERDCommentEmptyLines = 1
+let g:NERDTrimTrailingWhitespace = 1
+let g:NERDToggleCheckAllLines = 1
+map <F4> <leader>ci <CR>
+
+" Autocmds ********************************************************************
 
 " Update keyboard bindings when sxhkdrc is updated
-autocmd BufWritePost *sxhkdrc !killall sxhkd; sxhkd &
+autocmd BufWritePost *sxhkdrc !killall -s SIGUSR1 sxhkd
 
-"****************************************************************************
-" Basic settings
+
+" Basic settings **************************************************************
 
 " Encoding
 set encoding=utf-8
@@ -68,7 +90,7 @@ set fileencoding=utf-8
 set fileencodings=utf-8
 
 " Line numbers
-set number
+set number relativenumber
 
 " Tabs
 set tabstop=4
@@ -96,3 +118,10 @@ map <C-l> <C-w>l
 
 " Misc
 set title
+" set hidden
+
+" Colors
+syntax enable
+colorscheme edge
+
+filetype plugin on
