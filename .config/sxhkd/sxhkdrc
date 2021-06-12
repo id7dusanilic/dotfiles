@@ -46,6 +46,10 @@ super + F3
 super + F4
 	$TERM_EMULATOR -e fzf_editscripts
 
+# Kill a process with dmenu
+super + F9
+	dmenu_kill
+
 # Start dmenu_run with history
 super + shift + p
 	dmenu_run_history
