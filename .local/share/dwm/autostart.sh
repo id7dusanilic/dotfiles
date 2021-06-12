@@ -13,6 +13,6 @@ xcompmgr &
 # Initialize keyboard layout
 keyboard_layout --set us
 # Start pulse deamon to update status bar on audio events
-pulse_daemon &
+killall pulse_daemon && killall pactl; pulse_daemon &
 # Start the status bar
 dwmblocks &
