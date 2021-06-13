@@ -26,18 +26,18 @@ call plug#end()
 
 " coc Configuration ***********************************************************
 let g:coc_global_extensions = [
-	\ 'coc-sh',
-	\ 'coc-jedi',
-	\ 'coc-pyright',
-	\ 'coc-pairs',
-	\ 'coc-cmake',
-	\ 'coc-markdownlint',
-	\ 'coc-snippets'
-	\ ]
+    \ 'coc-sh',
+    \ 'coc-jedi',
+    \ 'coc-pyright',
+    \ 'coc-pairs',
+    \ 'coc-cmake',
+    \ 'coc-markdownlint',
+    \ 'coc-snippets'
+    \ ]
 
 " Use tab for trigger completion and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab
-" is not mapped by other plugin before putting this 
+" is not mapped by other plugin before putting this
 " into your config.
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
@@ -95,6 +95,7 @@ set number relativenumber
 " Tabs
 set tabstop=4
 set shiftwidth=4
+set expandtab
 
 " Clipboard
 set clipboard=unnamedplus
