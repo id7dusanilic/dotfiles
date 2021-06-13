@@ -32,6 +32,8 @@ let g:coc_global_extensions = [
     \ 'coc-pairs',
     \ 'coc-cmake',
     \ 'coc-markdownlint',
+    \ 'coc-dot-complete',
+    \ 'coc-clangd',
     \ 'coc-snippets'
     \ ]
 
