@@ -1,35 +1,50 @@
 #!/bin/sh
 
+# Author: Dusan Ilic
+# This script is used to capture screenshots using the maim tool.
+
 set -euo pipefail
 
-# Change the coordinates for your primary and secondary monitor here
-left_monitor='1920x1080+0+0'
-right_monitor='1920x1080+1920+0'
+screenshots_path=$HOME/Pictures/screenshots
 
+# Connected monitors names
+monitors_names=($(xrandr | grep " connected" | cut -d' ' -f 1))
+
+# Creating the dmenu menu
 opt_whole_screen="Whole Screen"
-opt_left_monitor="Left Monitor"
-opt_right_monitor="Right Monitor"
 opt_active_window="Active Window"
-area_options="${opt_whole_screen}\n${opt_left_monitor}\n${opt_right_monitor}\n${opt_active_window}"
 
-area=$(echo -e "${area_options}" | dmenu -p "Screenshot Area:" -l 10)
+create_menu () {
+    printf "%s\n" ${monitors_names[@]}
+    echo ${opt_whole_screen}
+    echo ${opt_active_window}
+}
 
-name=$(echo "" | dmenu -p "Screenshot name")
+selected_area=$(echo -e "$(create_menu)" | dmenu -p "Screenshot Area:" -l 10)
 
-case "${area}" in
-    "${opt_whole_screen}")
-        maim "${name}"
+case "${selected_area}" in
+    "${opt_whole_screen}") # Whole screen
+        maim | xclip -selection clipboard -t image/png
         ;;
-    "${opt_left_monitor}")
-        maim --geometry=${left_monitor} "${name}"
+    "${opt_active_window}") # Active window
+        maim -i $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
         ;;
-    "${opt_right_monitor}")
-        maim --geometry=${right_monitor} "${name}"
-        ;;
-    "${opt_active_window}")
-        maim -i $(xdotool getactivewindow) "${name}"
-        ;;
-    *)
-        exit 1
+    *) # Selected monitor or invalid
+        monitor_geometry=($(xrandr | grep ${selected_area} | grep -o '[0-9]\+x[0-9]\++[0-9]\++[0-9]\+'))
+        [ -z  ${monitor_geometry} ] && exit 1 # Invalid
+        maim --geometry=${monitor_geometry} | xclip -selection clipboard -t image/png
         ;;
 esac
+
+# Choose outoput, file or clipboard
+opt_clipboard="Save to clipboard"
+opt_file="Save to file"
+selected_output=$(echo -e "${opt_file}\n${opt_clipboard}" | dmenu -p "Select output:" -l 2)
+
+[ "${selected_output}" == "${opt_clipboard}" ] && \
+    notify-send "Screenshot Script" "Copied screenshot to clipboard" && \
+    exit 0
+
+name=$(echo "" | dmenu -p "Enter screenshot name:")
+mkdir -p "${screenshots_path}" && xclip -selection clipboard -o > "${screenshots_path}/${name}" && \
+    notify-send "Screenshot Script" "Saved ${name} in ${screenshots_path}"

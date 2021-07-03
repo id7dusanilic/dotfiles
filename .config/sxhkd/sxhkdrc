@@ -26,6 +26,10 @@ super + shift +q
 super + shift + backslash
 	dmenu_clipboard_run
 
+# Take a screenshot
+Print
+	dmenu_screenshot
+
 # Lock screen
 super + shift + l
 	slock
