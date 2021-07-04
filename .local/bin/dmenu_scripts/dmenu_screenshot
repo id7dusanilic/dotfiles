@@ -21,18 +21,20 @@ create_menu () {
 }
 
 selected_area=$(echo -e "$(create_menu)" | dmenu -p "Screenshot Area:" -l 10)
+tmp_name="screenshot_$(date +'%Y_%m_%d_%H:%M').png"
 
 case "${selected_area}" in
     "${opt_whole_screen}") # Whole screen
+        maim "/tmp/${tmp_name}"
         maim | xclip -selection clipboard -t image/png
         ;;
     "${opt_active_window}") # Active window
-        maim -i $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
+        maim -i $(xdotool getactivewindow) "/tmp/${tmp_name}"
         ;;
     *) # Selected monitor or invalid
         monitor_geometry=($(xrandr | grep ${selected_area} | grep -o '[0-9]\+x[0-9]\++[0-9]\++[0-9]\+'))
         [ -z  ${monitor_geometry} ] && exit 1 # Invalid
-        maim --geometry=${monitor_geometry} | xclip -selection clipboard -t image/png
+        maim --geometry=${monitor_geometry} "/tmp/${tmp_name}"
         ;;
 esac
 
@@ -42,9 +44,13 @@ opt_file="Save to file"
 selected_output=$(echo -e "${opt_file}\n${opt_clipboard}" | dmenu -p "Select output:" -l 2)
 
 [ "${selected_output}" == "${opt_clipboard}" ] && \
-    notify-send "Screenshot Script" "Copied screenshot to clipboard" && \
+    cat "/tmp/${tmp_name}" | xclip -selection clipboard -t image/png -i && \
+    notify-send -i "/tmp/${tmp_name}" "Screenshot Script" "Copied screenshot to clipboard" && \
+    rm "/tmp/${tmp_name}" && \
     exit 0
 
 name=$(echo "" | dmenu -p "Enter screenshot name:")
+[ -z "${name}" ] && name=${tmp_name}
 mkdir -p "${screenshots_path}" && xclip -selection clipboard -o > "${screenshots_path}/${name}" && \
-    notify-send "Screenshot Script" "Saved ${name} in ${screenshots_path}"
+    notify-send -i "/tmp/${tmp_name}" "Screenshot Script" "Saved ${name} in ${screenshots_path}"
+    rm "/tmp/${tmp_name}" 
