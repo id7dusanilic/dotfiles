@@ -23,7 +23,7 @@ create_menu () {
 }
 
 selected_area=$(echo -e "$(create_menu)" | dmenu -p "Screenshot Area:" -l 10)
-tmp_name="screenshot_$(date +'%Y_%m_%d_%H:%M').png"
+tmp_name="screenshot_$(date +'%Y_%m_%d_%H:%M:%S').png"
 
 maim_command="maim --hidecursor"
 
