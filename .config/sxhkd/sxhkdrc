@@ -10,6 +10,10 @@ super + r
 super + e
 	gvim
 
+# Open calendar (calcurse)
+super + c
+	$TERM_EMULATOR -e calcurse
+
 # Switch to previuos keyboard layout
 super + space
 	keyboard_layout --prev && sigdwmblocks 2
@@ -62,5 +66,11 @@ super + shift + p
 XF86AudioMute
 	pamixer -t
 
+super + alt + m
+	pamixer -t
+
 XF86Audio{Raise,Lower}Volume
+	pamixer --allow-boost {-i,-d} 5
+
+super + alt + {j,k}
 	pamixer --allow-boost {-i,-d} 5
