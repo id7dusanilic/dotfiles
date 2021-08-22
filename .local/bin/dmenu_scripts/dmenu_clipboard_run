@@ -6,7 +6,7 @@
 clip=$(xclip -o)
 
 cmds="\
-mpv		mpv $clip
+mpv		mpv --x11-name=FloatingTerminal $clip
 surf	surf $clip
 other"
 

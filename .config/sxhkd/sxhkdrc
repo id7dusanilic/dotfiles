@@ -72,5 +72,5 @@ super + alt + m
 XF86Audio{Raise,Lower}Volume
 	pamixer --allow-boost {-i,-d} 5
 
-super + alt + {j,k}
+super + alt + {k,j}
 	pamixer --allow-boost {-i,-d} 5

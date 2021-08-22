@@ -11,12 +11,13 @@
 # General aliases to improve terminal
 alias cp='cp -iv'               # confirm before overwriting something
 alias mv='mv -iv'               # confirm before overwriting something
-# alias ls='exa'                  # substitute ls with exa
-alias ls='ls --color=auto'      # add color to ls
+alias ls='exa'                  # substitute ls with exa
+alias ls='ls --color=auto --group-directories-first'      # add color to ls
 alias l.='ls -ld .*'            # list hidden files in long format
 alias ll='ls -l '               # list in long format
 alias la='ls -lah'              # list all files in long format
 alias grep='grep --color=auto'  # add color to grep
+alias ccat='highlight --out-format=ansi'    # Colored cat with syntax highlight
 
 # Misc aliases
 alias fix_vmware='sudo vmware-modconfig --console --install-all'
@@ -42,11 +43,12 @@ shopt -s autocd
 export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 
 # Default text editor
-export EDITOR=/usr/bin/nvim
-export VISUAL=/usr/bin/nvim
+export EDITOR=/usr/bin/vim
+export VISUAL=/usr/bin/vim
 
 # Default browser
-export BROWSER=/usr/bin/brave
+# export BROWSER=/usr/bin/brave
+export BROWSER=/usr/bin/qutebrowser
 
 # Default terminal emulator, to be used by other scripts
 export TERM_EMULATOR=/usr/local/bin/st
