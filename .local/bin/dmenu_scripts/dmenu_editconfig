@@ -6,6 +6,8 @@
 
 set -euo pipefail
 
+[ -z "${DMENU_COMMAND}" ] && DMENU_COMMAND="dmenu"
+
 config_files="\
 bashrc		$HOME/.bashrc
 nvim		$HOME/.config/nvim/init.vim
@@ -17,7 +19,7 @@ alacritty	$HOME/.config/alacritty/alacritty.yml
 kitty		$HOME/.config/kitty/kitty.conf
 vifm		$HOME/.config/vifm/vifmrc"
 
-choice=$(echo "${config_files}" | cut -f 1 | dmenu -l 20 -p "Choose a config file to edit:") || exit 1
+choice=$(echo "${config_files}" | cut -f 1 | ${DMENU_COMMAND} -l 10 -p "Choose a config file to edit:") || exit 1
 
 config_path=$(echo "${config_files}" | sed 's/ \+/	/g' | grep "^${choice}	" | cut -f 2-)
 

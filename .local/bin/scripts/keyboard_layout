@@ -10,6 +10,8 @@
 # Available layouts array.
 # Format: layout_signature <Tab> layout_command.
 
+[ -z "${DMENU_COMMAND}" ] && DMENU_COMMAND="dmenu"
+
 AVAILABLE_LAYOUTS="\
 us	setxkbmap -layout us
 rs	setxkbmap -layout rs -variant latin
@@ -42,7 +44,7 @@ set_layout () {
 
 # Creates a dmenu prompt for choosing a keyboard layout
 dmenu_prompt() {
-	echo -e "$(get_layouts)" | dmenu -p "Choose keyboard layout  :" -l 10
+	echo -e "$(get_layouts)" | ${DMENU_COMMAND} -p "Choose keyboard layout  :" -l 3
 }
 
 

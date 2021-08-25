@@ -3,11 +3,12 @@
 # This script is used to control wifi state and connections with dmenu
 
 set -euo pipefail
+[ -z "${DMENU_COMMAND}" ] && DMENU_COMMAND="dmenu"
 
 select_wifi () {
 	ssid=$(nmcli -f ssid,bars,security device wifi list \
 			| sed -n '1!p' \
-			| dmenu -p "Select Wifi  :" -l 20 \
+			| ${DMENU_COMMAND} -p "Select Wifi  :" -l 20 \
 			| sed 's/ \{2,\}/	/g' \
 			| cut -f 1)
 	# echo $ssid
@@ -22,7 +23,7 @@ select_wifi () {
 		&& wifi_status \
 		&& exit 0
 
-	pass=$(echo "" | dmenu -P -p "Enter Password  :")
+	pass=$(echo "" | ${DMENU_COMMAND} -P -p "Enter Password  :")
 	# echo $pass
 
 	nmcli device wifi connect "${ssid}" password "${pass}"
@@ -69,7 +70,7 @@ ${show_password_prompt}" \
 ${turn_on_prompt}
 ${select_prompt}"
 
-choice=$(echo -e "${all_prompts}" | dmenu -l 20 -p "  Options:")
+choice=$(echo -e "${all_prompts}" | ${DMENU_COMMAND} -l 20 -p "  Options:")
 
 case "$choice" in
 	"${turn_on_prompt}")

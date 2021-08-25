@@ -1,5 +1,7 @@
 #!/bin/sh
 
+[ -z "${DMENU_COMMAND}" ] && DMENU_COMMAND="dmenu"
+
 status_power() {
     bluetoothctl show | grep -q "Powered: yes" && return 1 || return 0
 }
@@ -84,7 +86,7 @@ start_menu () {
     [ "${power_option}" == "Power: on" ] && \
         menu="${power_option}\n${pairable_option}\n${scan_option}\n${disc_option}\n${list_dev_opt}" || \
         menu="${power_option}"
-    choice="$(echo -e "${menu}" | dmenu -l 10 -p "Bluetooth options :")"
+    choice="$(echo -e "${menu}" | ${DMENU_COMMAND} -l 10 -p "Bluetooth options :")"
     case "${choice}" in
         "${power_option}")
             toggle_power
@@ -108,7 +110,7 @@ start_menu () {
 }
 
 devices_menu () {
-    selected_device="$(devices_list | dmenu -l 20 -p "All available devices:")"
+    selected_device="$(devices_list | ${DMENU_COMMAND} -l 20 -p "All available devices:")"
     if [ -n "${selected_device}" ]; then
         echo "${selected_device}" | grep -q "^(Paired) " && selected_device="${selected_device:9}"
         selected_mac_address="$(bluetoothctl devices | grep "${selected_device}" | cut -d ' ' -f 2)"
@@ -119,7 +121,7 @@ devices_menu () {
         device_trusted "${selected_mac_address}"
         [ $? == 1 ] && trust_option="Trusted: yes" || trust_option="Trusted: no"
         menu="${conn_option}\n${pair_option}\n${trust_option}"
-        choice=$(echo -e "${menu}" | dmenu -l 5 -p "${selected_device} options:")
+        choice=$(echo -e "${menu}" | ${DMENU_COMMAND} -l 5 -p "${selected_device} options:")
         case "${choice}" in
             "${conn_option}")
                 toggle_connection "${selected_mac_address}"

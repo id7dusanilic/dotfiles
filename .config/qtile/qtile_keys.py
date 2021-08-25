@@ -1,7 +1,7 @@
 # QTILE Keybindings definitions
 # Dusan Ilic 2021
 
-from libqtile.config import Key
+from libqtile.config import Key, ScratchPad
 from libqtile.lazy import lazy
 
 # To define keybindings for group managment
@@ -15,9 +15,7 @@ terminal = "sh -c $TERM_EMULATOR"
 
 # The keys variable defines key bindings
 keys = [
-    # Switch between windows
-    Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
-    Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
+    # Switch between windows Key([mod], "h", lazy.layout.left(), desc="Move focus to left"), Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
     Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
     Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
 
@@ -68,15 +66,19 @@ keys = [
 
     # Spawn programs using dmenu
     Key([mod], "p", lazy.spawn("rofi -show run"), desc="Spawn rofi"),
+
+    # Toggle ranger scratchpad
+    Key([mod], 's', lazy.group['scratchpad'].dropdown_toggle('ranger_scratchpad')),
 ]
 
 for index, g in enumerate(groups):
-    keys.extend(
-        [
-            # Focus group on current screen
-            Key([mod], str(index + 1), lazy.group[g.name].toscreen(), desc=f"Focus group {g.name} on screen"),
+    if not isinstance(g, ScratchPad):
+        keys.extend(
+            [
+                # Focus group on current screen
+                Key([mod], str(index + 1), lazy.group[g.name].toscreen(), desc=f"Focus group {g.name} on screen"),
 
-            # Move current window to group
-            Key([mod, "shift"], str(index + 1), lazy.window.togroup(g.name), desc=f"Move focused window to group {g.name}")
-        ]
+                # Move current window to group
+                Key([mod, "shift"], str(index + 1), lazy.window.togroup(g.name), desc=f"Move focused window to group {g.name}")
+            ]
     )

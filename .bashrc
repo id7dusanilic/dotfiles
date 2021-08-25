@@ -54,6 +54,9 @@ export BROWSER=/usr/bin/qutebrowser
 export TERM_EMULATOR=/usr/local/bin/st
 export TERM=st
 
+# dmenu command used in scripts
+export DMENU_COMMAND="rofi -dmenu"
+
 # Expand PATH variable
 export PATH=$PATH:$HOME/.local/bin/dmenu_scripts:$HOME/.local/bin/scripts
 

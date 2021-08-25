@@ -16,14 +16,15 @@ battery_monitor = \
         full_char= 'BAT',
         unknown_char = 'BAT',
         update_interval = 5,
+        notify_below = 10,
         format = '[ {char}: {percent:2.0%} ]',
-        padding = 10,
+        padding = 5,
     )
 
 RAM_monitor = \
     widget.Memory(
         format = '[ RAM: {MemUsed:.0f}{mm}/{MemTotal:.0f}{mm} ]',
-        padding = 10,
+        padding = 5,
     )
 
 clock = \
@@ -63,18 +64,25 @@ def basic_elements():
         ),
         widget.WindowName(),
         widget.Spacer(),
-        widget.Wlan(),
-        widget.Bluetooth(),
+        widget.Wlan(
+            interface='wlp3s0',
+            format = '[ {essid} {percent:2.0%} ]',
+        ),
         widget.Net(
             format = '[ NET:{down} ↓↑{up} ]',
-            padding = 10,
+            padding = 5,
         ),
         widget.PulseVolume(
             fmt = '[ VOL: {} ]',
-            padding = 10,
+            padding = 5,
         ),
         RAM_monitor,
         battery_monitor,
+        widget.KeyboardLayout(
+            fmt = '[ {} ]',
+            padding = 5,
+            display_map = {'us':'US', 'rs':'PC', 'rs latin':'RS'},
+        ),
         calendar,
         clock,
     ]
