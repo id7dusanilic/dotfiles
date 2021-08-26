@@ -9,8 +9,8 @@ cmds="\
  leave			qtile cmd-obj -o cmd -f shutdown
  renew			qtile cmd-obj -o cmd -f restart
 鈴 suspend		loginctl suspend
-勒 reboot		reboot
- shutdown		shutdown -h now"
+勒 reboot		sudo reboot
+ shutdown		sudo shutdown -h now"
 
 choice="$(echo "$cmds" | cut -f 1 | ${DMENU_COMMAND} -l 7)" || exit 1
 

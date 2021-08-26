@@ -12,14 +12,14 @@ from libqtile import hook
 
 @hook.subscribe.startup_once
 def autostart():
+    # Setup monitors
+    os.system("xrandr --output HDMI-2 --primary --left-of eDP-1")
     # Set wallpaper
     os.system("set_wallpaper")
     # Setup keybindings
     os.system("sxhkd -m 1 &")
     # Start systray network manager
     os.system("nm-applet &")
-    # Setup monitors
-    os.system("xrandr --output HDMI-2 --primary --left-of eDP-1")
     # Allow transparent windows
     # os.system("xcompmgr &")
     # Initialize keyboard layout
