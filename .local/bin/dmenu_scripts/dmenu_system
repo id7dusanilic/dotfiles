@@ -6,12 +6,11 @@
 
 cmds="\
  lock			slock
- leave			kill -TERM $(pgrep -u $USER "\b$XDG_SESSION_DESKTOP$")
- renew			kill -HUP $(pgrep -u $USER "\b$XDG_SESSION_DESKTOP$")
-鈴 hibernate	${hib:-systemctl suspend-then-hibernate -i}
-鈴 suspend		${hib:-systemctl suspend}
-勒 reboot		${reb:-reboot}
- shutdown		${shut:-shutdown -h now}"
+ leave			qtile cmd-obj -o cmd -f shutdown
+ renew			qtile cmd-obj -o cmd -f restart
+鈴 suspend		loginctl suspend
+勒 reboot		reboot
+ shutdown		shutdown -h now"
 
 choice="$(echo "$cmds" | cut -f 1 | ${DMENU_COMMAND} -l 7)" || exit 1
 

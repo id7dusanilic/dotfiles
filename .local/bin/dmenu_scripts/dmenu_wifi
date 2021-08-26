@@ -70,7 +70,7 @@ ${show_password_prompt}" \
 ${turn_on_prompt}
 ${select_prompt}"
 
-choice=$(echo -e "${all_prompts}" | ${DMENU_COMMAND} -l 20 -p "  Options:")
+choice=$(echo -e "${all_prompts}" | ${DMENU_COMMAND} -l 5 -p "  Options:")
 
 case "$choice" in
 	"${turn_on_prompt}")

@@ -4,70 +4,23 @@
 #
 # Executed by startx (run your window manager from here)
 
-userresources=$HOME/.Xresources
-usermodmap=$HOME/.Xmodmap
-sysresources=/etc/X11/xinit/.Xresources
-sysmodmap=/etc/X11/xinit/.Xmodmap
+# Set environment variables
+export PATH=$PATH:$HOME/.local/bin/dmenu_scripts:$HOME/.local/bin/scripts
 
-DEFAULT_SESSION=dwm
+# Default text editor
+export EDITOR=/usr/bin/vim
+export VISUAL=/usr/bin/vim
 
-# merge in defaults and keymaps
+# Default browser
+export BROWSER=/usr/bin/qutebrowser
 
-if [ -f $sysresources ]; then
-    xrdb -merge $sysresources
-fi
+# Default terminal emulator, to be used by other scripts
+export TERM_EMULATOR=/usr/local/bin/st
+export TERM=st
 
-if [ -f $sysmodmap ]; then
-    xmodmap $sysmodmap
-fi
+# dmenu command used in scripts
+export DMENU_COMMAND="rofi -dmenu"
 
-if [ -f "$userresources" ]; then
-    xrdb -merge "$userresources"
-fi
+# Start window manager
+exec qtile start
 
-if [ -f "$usermodmap" ]; then
-    xmodmap "$usermodmap"
-fi
-
-# start some nice programs
-
-if [ -d /etc/X11/xinit/xinitrc.d ] ; then
-    for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
-        [ -x "$f" ] && . "$f"
-    done
-    unset f
-fi
-
-get_session(){
-	local dbus_args=(--sh-syntax --exit-with-session)
-	case $1 in
-		awesome) dbus_args+=(awesome) ;;
-		bspwm) dbus_args+=(bspwm-session) ;;
-		budgie) dbus_args+=(budgie-desktop) ;;
-		cinnamon) dbus_args+=(cinnamon-session) ;;
-		deepin) dbus_args+=(startdde) ;;
-		enlightenment) dbus_args+=(enlightenment_start) ;;
-		fluxbox) dbus_args+=(startfluxbox) ;;
-		gnome) dbus_args+=(gnome-session) ;;
-		i3|i3wm) dbus_args+=(i3 --shmlog-size 0) ;;
-		jwm) dbus_args+=(jwm) ;;
-		kde) dbus_args+=(startplasma-x11) ;;
-		lxde) dbus_args+=(startlxde) ;;
-		lxqt) dbus_args+=(lxqt-session) ;;
-		mate) dbus_args+=(mate-session) ;;
-		xfce) dbus_args+=(xfce4-session) ;;
-		openbox) dbus_args+=(openbox-session) ;;
-		dwm) dbus_args=(dwm) ;;
-		*) dbus_args+=($DEFAULT_SESSION) ;;
-	esac
-
-	echo "dbus-launch ${dbus_args[*]}"
-}
-
-USERXSESSION="$XDG_CACHE_HOME/x11/xsession"
-USERXSESSIONRC="$XDG_CACHE_HOME/x11/xsessionrc"
-ALTUSERXSESSION="$XDG_CACHE_HOME/x11/Xsession"
-ERRFILE="$XDG_CACHE_HOME/x11/xsession-errors"
-
-# Starting session
-exec $(get_session "$1")
