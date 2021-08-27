@@ -11,11 +11,10 @@
 # General aliases to improve terminal
 alias cp='cp -iv'               # confirm before overwriting something
 alias mv='mv -iv'               # confirm before overwriting something
-#alias ls='exa'                  # substitute ls with exa
-alias ls='ls --color=auto --group-directories-first'      # add color to ls
+alias ls='exa --color=auto --group-directories-first'      # add color to ls
 alias l.='ls -ld .*'            # list hidden files in long format
 alias ll='ls -l '               # list in long format
-alias la='ls -lah'              # list all files in long format
+alias la='ls -la'               # list all files in long format
 alias grep='grep --color=auto'  # add color to grep
 alias ccat='highlight --out-format=ansi'    # Colored cat with syntax highlight
 

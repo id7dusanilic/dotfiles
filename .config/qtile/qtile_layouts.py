@@ -15,6 +15,13 @@ shared_config = {
 }
 
 layouts = [
+    # Columns layout
+    layout.Columns(
+        margin_on_single = single_margin,
+        border_focus_stack = colors[0],
+        border_normal_stack = '#282828',
+        **shared_config
+    ),
     # Monad Tall layout
     layout.MonadTall(
         single_margin = single_margin,
@@ -29,13 +36,6 @@ layouts = [
         single_margin = single_margin,
         single_border_width = 0,
         ratio = 0.6,
-        **shared_config
-    ),
-    # Columns layout
-    layout.Columns(
-        margin_on_single = single_margin,
-        border_focus_stack = colors[0],
-        border_normal_stack = '#282828',
         **shared_config
     ),
 ]

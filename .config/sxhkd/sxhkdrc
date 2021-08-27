@@ -34,10 +34,6 @@ super + shift + backslash
 Print
 	dmenu_screenshot
 
-# Lock screen
-super + shift + l
-	slock
-
 # Wifi options
 super + F1
 	dmenu_wifi
