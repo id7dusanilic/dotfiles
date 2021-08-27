@@ -15,7 +15,9 @@ terminal = "sh -c $TERM_EMULATOR"
 
 # The keys variable defines key bindings
 keys = [
-    # Switch between windows Key([mod], "h", lazy.layout.left(), desc="Move focus to left"), Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
+    # Switch between windows
+    Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
+    Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
     Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
     Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
 
@@ -49,10 +51,10 @@ keys = [
 
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
-    Key([mod], "t", lazy.to_layout_index(0), desc="Layout with index 0"),
-    Key([mod], "m", lazy.to_layout_index(1), desc="Layout with index 1"),
-    Key([mod], "u", lazy.to_layout_index(2), desc="Layout with index 2"),
-    Key([mod], "o", lazy.to_layout_index(3), desc="Layout with index 3"),
+    Key([mod], "o", lazy.to_layout_index(0), desc="Layout with index 0"),
+    Key([mod], "t", lazy.to_layout_index(1), desc="Layout with index 1"),
+    Key([mod], "m", lazy.to_layout_index(2), desc="Layout with index 2"),
+    Key([mod], "u", lazy.to_layout_index(3), desc="Layout with index 3"),
 
     # Kill focused window
     Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
