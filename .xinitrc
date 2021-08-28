@@ -23,4 +23,3 @@ export DMENU_COMMAND="rofi -dmenu"
 
 # Start window manager
 exec qtile start
-

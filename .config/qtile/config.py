@@ -39,19 +39,19 @@ screens = [
 
 # Drag floating layouts.
 mouse = [
-    Click([mod], "Button1", lazy.window.toggle_floating()),
+    Click([mod], "Button2", lazy.window.toggle_floating()),
     Drag([mod], "Button1", lazy.window.set_position_floating(),
          start=lazy.window.get_position()),
     Drag([mod], "Button3", lazy.window.set_size_floating(),
          start=lazy.window.get_size()),
-    Click([mod], "Button2", lazy.window.bring_to_front())
+    # Click([mod], "Button2", lazy.window.bring_to_front())
 ]
 
 dgroups_key_binder = None
 dgroups_app_rules = []  # type: List
 main = None  # WARNING: this is deprecated and will be removed soon
 follow_mouse_focus = False
-bring_front_click = False
+bring_front_click = "floating_only"
 cursor_warp = False
 floating_layout = layout.Floating(float_rules=[
     # Run the utility of `xprop` to see the wm class and name of an X client.
@@ -60,9 +60,11 @@ floating_layout = layout.Floating(float_rules=[
     Match(wm_class='makebranch'),  # gitk
     Match(wm_class='maketag'),  # gitk
     Match(wm_class='ssh-askpass'),  # ssh-askpass
+    Match(wm_class='Thunar'),  # thunar
+    Match(title='calcurse'),  # calcurse
     Match(title='branchdialog'),  # gitk
     Match(title='pinentry'),  # GPG key password entry
-])
+], border_focus='#005577', border_width=3)
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 

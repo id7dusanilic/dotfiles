@@ -53,6 +53,7 @@ def basic_elements():
             other_screen_border = colors[1],
             padding = 5,
             border = 0,
+            hide_unused=True,
         ),
         widget.CurrentLayoutIcon(
             scale = 0.7,
@@ -66,7 +67,7 @@ def basic_elements():
         widget.Spacer(),
         widget.Wlan(
             interface='wlp3s0',
-            format = '[ {essid} {percent:2.0%} ]',
+            format = '[ WIFI: {essid} {percent:2.0%} ]',
         ),
         widget.Net(
             format = '[ NET:{down} ↓↑{up} ]',

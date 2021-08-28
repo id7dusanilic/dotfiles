@@ -31,8 +31,6 @@ xhost +local:root > /dev/null 2>&1
 # it regains control.
 shopt -s checkwinsize
 
-# Enable history appending instead of overwriting
-shopt -s histappend
 
 # Auto cd into directories
 shopt -s autocd
@@ -59,8 +57,13 @@ export DMENU_COMMAND="rofi -dmenu"
 export PATH=$PATH:$HOME/.local/bin/dmenu_scripts:$HOME/.local/bin/scripts
 
 # History settings
-export HISTCONTROL=ignoreboth   # ignore duplicates in command history
+shopt -s cmdhist                # multiple commands on one line show up as a single line
+shopt -s histappend             # Enable history appending instead of overwriting
+export HISTCONTROL=ignoreboth:erasedups   # ignore duplicates in command history
 export HISTSIZE=1000            # increase history size to 1000 lines
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+export HISTIGNORE='ls:ll:la:gs:pwd:history:clear:cd:startx:htop:top:ranger:lsblk'
+
 # Create the directory if it doesn't exist first
 #[ -d "$XDG_DATA_HOME/bash" ] || mkdir -p $XDG_DATA_HOME/bash
 #export HISTFILE="$XDG_DATA_HOME/bash/history"   # Declutter $HOME
