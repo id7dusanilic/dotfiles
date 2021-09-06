@@ -20,8 +20,10 @@ alias ccat='highlight --out-format=ansi'    # Colored cat with syntax highlight
 
 # Misc aliases
 alias dotfiles='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
-#alias ec='fzf_editconfig'
+alias ec='fzf_editconfig'
 alias gs='git status'
+alias e='nvim'
+alias p='sudo pacman'
 
 # Allow root X Server access
 xhost +local:root > /dev/null 2>&1
@@ -39,8 +41,8 @@ shopt -s autocd
 export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 
 # Default text editor
-export EDITOR=/usr/bin/vim
-export VISUAL=/usr/bin/vim
+export EDITOR=/usr/bin/nvim
+export VISUAL=/usr/bin/nvim
 
 # Default browser
 # export BROWSER=/usr/bin/brave
@@ -62,7 +64,7 @@ shopt -s histappend             # Enable history appending instead of overwritin
 export HISTCONTROL=ignoreboth:erasedups   # ignore duplicates in command history
 export HISTSIZE=1000            # increase history size to 1000 lines
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
-export HISTIGNORE='ls:ll:la:gs:pwd:history:clear:cd:startx:htop:top:ranger:lsblk'
+export HISTIGNORE='ls:ll:la:gs:pwd:history:clear:cd:startx:htop:top:ranger:lsblk:neofetch'
 
 # Create the directory if it doesn't exist first
 #[ -d "$XDG_DATA_HOME/bash" ] || mkdir -p $XDG_DATA_HOME/bash

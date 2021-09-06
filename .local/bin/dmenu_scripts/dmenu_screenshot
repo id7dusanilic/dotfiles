@@ -23,7 +23,8 @@ create_menu () {
     echo ${opt_selection}
 }
 
-selected_area=$(echo -e "$(create_menu)" | ${DMENU_COMMAND} -p "Screenshot Area:" -l 6)
+num_lines=$(echo -e "$(create_menu)" | wc -l)
+selected_area=$(echo -e "$(create_menu)" | ${DMENU_COMMAND} -p "Screenshot Area" -l ${num_lines})
 tmp_name="screenshot_$(date +'%Y_%m_%d_%H_%M_%S').png"
 
 maim_command="maim --hidecursor"
@@ -48,7 +49,7 @@ esac
 # Choose outoput, file or clipboard
 opt_clipboard="Save to clipboard"
 opt_file="Save to file"
-selected_output=$(echo -e "${opt_file}\n${opt_clipboard}" | ${DMENU_COMMAND} -p "Select output:" -l 2)
+selected_output=$(echo -e "${opt_file}\n${opt_clipboard}" | ${DMENU_COMMAND} -p "Select output" -l 2)
 
 [ "${selected_output}" == "${opt_clipboard}" ] && \
     cat "/tmp/${tmp_name}" | xclip -selection clipboard -t image/png -i && \
@@ -56,7 +57,7 @@ selected_output=$(echo -e "${opt_file}\n${opt_clipboard}" | ${DMENU_COMMAND} -p 
     rm "/tmp/${tmp_name}" && \
     exit 0
 
-name=$(echo "" | ${DMENU_COMMAND} -p "Enter screenshot name:")
+name=$(echo "" | ${DMENU_COMMAND} -p "Enter screenshot name")
 [ -z "${name}" ] && name=${tmp_name}
 mkdir -p "${screenshots_path}" && cp "/tmp/${tmp_name}" "${screenshots_path}/${name}" && \
     notify-send -i "/tmp/${tmp_name}" "Screenshot Script" "Saved ${name} in ${screenshots_path}"

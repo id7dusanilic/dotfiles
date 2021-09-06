@@ -10,16 +10,14 @@ set -euo pipefail
 
 config_files="\
 bashrc		$HOME/.bashrc
+vim			$HOME/.vimrc
 nvim		$HOME/.config/nvim/init.vim
 sxhkdrc		$HOME/.config/sxhkd/sxhkdrc
 ranger		$HOME/.config/ranger/rc.conf
 zathura		$HOME/.config/zathura/zathurarc
-mpv			$HOME/.config/mpv/input.conf
-alacritty	$HOME/.config/alacritty/alacritty.yml
-kitty		$HOME/.config/kitty/kitty.conf
-vifm		$HOME/.config/vifm/vifmrc"
+mpv			$HOME/.config/mpv/input.conf"
 
-choice=$(echo "${config_files}" | cut -f 1 | ${DMENU_COMMAND} -l 10 -p "Choose a config file to edit:") || exit 1
+choice=$(echo "${config_files}" | cut -f 1 | ${DMENU_COMMAND} -l 6 -p "Choose a config file to edit") || exit 1
 
 config_path=$(echo "${config_files}" | sed 's/ \+/	/g' | grep "^${choice}	" | cut -f 2-)
 

@@ -66,7 +66,8 @@ def basic_elements():
         widget.WindowName(),
         widget.Spacer(),
         widget.Wlan(
-            interface='wlp3s0',
+            interface='wlan0',
+            disconnected_message = '[ WIFI: Disconnected ]',
             format = '[ WIFI: {essid} {percent:2.0%} ]',
         ),
         widget.Net(
