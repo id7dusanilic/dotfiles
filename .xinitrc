@@ -24,5 +24,10 @@ export TERM=st
 # dmenu command used in scripts
 export DMENU_COMMAND="rofi -dmenu"
 
+# XDG Base directories
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_DATA_HOME=$HOME/.local/share
+
 # Start window manager
 exec qtile start
