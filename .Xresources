@@ -1,0 +1,4 @@
+! COLORS FOR SXIV
+Sxiv.foreground:   #005577
+Sxiv.background:   #222222
+Sxiv.font: Mononoki Nerd Font:style=bold:size=11
