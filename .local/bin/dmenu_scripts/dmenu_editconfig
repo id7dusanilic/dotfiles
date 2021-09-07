@@ -10,7 +10,7 @@ set -euo pipefail
 
 config_files="\
 bashrc		$HOME/.bashrc
-vim			$HOME/.vimrc
+vim			$HOME/.vim/vimrc
 nvim		$HOME/.config/nvim/init.vim
 sxhkdrc		$HOME/.config/sxhkd/sxhkdrc
 ranger		$HOME/.config/ranger/rc.conf
