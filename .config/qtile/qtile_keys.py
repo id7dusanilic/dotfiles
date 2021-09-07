@@ -59,6 +59,9 @@ keys = [
     # Kill focused window
     Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
 
+    # Toggle bar visibility
+    Key([mod], "b", lazy.hide_show_bar(), desc="Toggle bar visibility"),
+
     # Exit and restart qtile
     Key([mod, "shift"], "Escape", lazy.restart(), desc="Restart Qtile"),
     Key([mod], "Escape", lazy.shutdown(), desc="Shutdown Qtile"),

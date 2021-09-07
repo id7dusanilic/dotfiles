@@ -66,6 +66,13 @@ super + F9
 super + shift + p
     rofi -show drun
 
+# Mount a drive
+super + F12
+	dmenu_mount
+
+# Unmount a drive
+super + F11
+	dmenu_unmount
 # Audio control
 XF86AudioMute
 	pamixer -t

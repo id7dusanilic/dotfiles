@@ -24,7 +24,7 @@ create_menu () {
 }
 
 num_lines=$(echo -e "$(create_menu)" | wc -l)
-selected_area=$(echo -e "$(create_menu)" | ${DMENU_COMMAND} -p "Screenshot Area" -l ${num_lines})
+selected_area=$(echo -e "$(create_menu)" | ${DMENU_COMMAND} -i -p "Screenshot Area" -l ${num_lines})
 tmp_name="screenshot_$(date +'%Y_%m_%d_%H_%M_%S').png"
 
 maim_command="maim --hidecursor"
@@ -49,7 +49,7 @@ esac
 # Choose outoput, file or clipboard
 opt_clipboard="Save to clipboard"
 opt_file="Save to file"
-selected_output=$(echo -e "${opt_file}\n${opt_clipboard}" | ${DMENU_COMMAND} -p "Select output" -l 2)
+selected_output=$(echo -e "${opt_file}\n${opt_clipboard}" | ${DMENU_COMMAND} -i -p "Select output" -l 2)
 
 [ "${selected_output}" == "${opt_clipboard}" ] && \
     cat "/tmp/${tmp_name}" | xclip -selection clipboard -t image/png -i && \

@@ -4,6 +4,9 @@
 #
 # Executed by startx (run your window manager from here)
 
+# Read Xresources
+xrdb $HOME/.Xresources
+
 # Set environment variables
 export PATH=$PATH:$HOME/.local/bin/dmenu_scripts:$HOME/.local/bin/scripts
 
