@@ -33,30 +33,11 @@ xhost +local:root > /dev/null 2>&1
 # it regains control.
 shopt -s checkwinsize
 
-
 # Auto cd into directories
 shopt -s autocd
 
 # Fuzzy finder default options
 export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
-
-# Default text editor
-export EDITOR=/usr/bin/nvim
-export VISUAL=/usr/bin/nvim
-
-# Default browser
-# export BROWSER=/usr/bin/brave
-export BROWSER=/usr/bin/qutebrowser
-
-# Default terminal emulator, to be used by other scripts
-export TERM_EMULATOR=/usr/local/bin/st
-export TERM=st
-
-# dmenu command used in scripts
-export DMENU_COMMAND="rofi -dmenu"
-
-# Expand PATH variable
-export PATH=$PATH:$HOME/.local/bin/dmenu_scripts:$HOME/.local/bin/scripts
 
 # History settings
 shopt -s cmdhist                # multiple commands on one line show up as a single line
