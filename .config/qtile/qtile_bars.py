@@ -3,6 +3,7 @@
 
 from libqtile import bar, widget
 from qtile_colors import *
+from ipaddress_widget import IPAddress
 
 import subprocess
 
@@ -65,15 +66,16 @@ def basic_elements():
         ),
         widget.WindowName(),
         widget.Spacer(),
+        IPAddress(),
         widget.Wlan(
             interface='wlan0',
             disconnected_message = '[ WIFI: Disconnected ]',
             format = '[ WIFI: {essid} {percent:2.0%} ]',
         ),
-        widget.Net(
-            format = '[ NET:{down} ↓↑{up} ]',
-            padding = 5,
-        ),
+#        widget.Net(
+#            format = '[ NET:{down} ↓↑{up} ]',
+#            padding = 5,
+#        ),
         widget.PulseVolume(
             fmt = '[ VOL: {} ]',
             padding = 5,
