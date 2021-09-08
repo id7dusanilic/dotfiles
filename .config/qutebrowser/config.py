@@ -1818,7 +1818,7 @@ c.input.insert_mode.auto_load = False
 ##   - startpage: Load the start page.
 ##   - default-page: Load the default page.
 ##   - close: Close the window.
-# c.tabs.last_close = 'ignore'
+c.tabs.last_close = 'default-page'
 
 ## Maximum width (in pixels) of tabs (-1 for no maximum). This setting
 ## only applies when tabs are horizontal. This setting does not apply to
@@ -1841,7 +1841,7 @@ c.input.insert_mode.auto_load = False
 ##   - persist: Retain the current mode.
 ##   - restore: Restore previously saved mode.
 ##   - normal: Always revert to normal mode.
-# c.tabs.mode_on_change = 'normal'
+c.tabs.mode_on_change = 'restore'
 
 ## Switch between tabs using the mouse wheel.
 ## Type: Bool
