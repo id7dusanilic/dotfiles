@@ -2,7 +2,6 @@
 
 # This script is used to control wifi state and connections with dmenu
 
-set -euo pipefail
 [ -z "${DMENU_COMMAND}" ] && DMENU_COMMAND="dmenu"
 
 select_wifi () {

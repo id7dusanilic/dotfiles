@@ -4,8 +4,6 @@
 # This script displays a selection of config files to edit with
 # a text editor in dmenu
 
-set -euo pipefail
-
 [ -z "${DMENU_COMMAND}" ] && DMENU_COMMAND="dmenu"
 
 config_files="\

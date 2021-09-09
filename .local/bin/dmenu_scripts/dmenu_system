@@ -8,10 +8,9 @@ cmds="\
  lock			slock
  leave			qtile cmd-obj -o cmd -f shutdown
  renew			qtile cmd-obj -o cmd -f restart
-鈴 suspend		loginctl suspend
-鈴 hibernate	loginctl hibernate
-勒 reboot		loginctl reboot
- shutdown		loginctl poweroff"
+鈴 suspend		systemctl suspend
+勒 reboot		systemctl reboot
+ shutdown		systemctl poweroff"
 
 choice="$(echo "$cmds" | cut -f 1 | ${DMENU_COMMAND} -l 7 -i -p "System options")" || exit 1
 

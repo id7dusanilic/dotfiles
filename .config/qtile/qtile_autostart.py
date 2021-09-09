@@ -13,7 +13,9 @@ from libqtile import hook
 @hook.subscribe.startup_once
 def autostart():
     # Setup monitors
-    os.system("xrandr --output HDMI-2 --primary --left-of eDP-1")
+    os.system("xrandr --output eDP-1 --off")
+    os.system("xrandr --output DP-2-2 --left-of DP-1-2")
+    os.system("xrandr --output DP-2-2 --primary")
     # Set wallpaper
     os.system("set_wallpaper")
     # Setup keybindings

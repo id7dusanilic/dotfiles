@@ -32,8 +32,8 @@ keys = [
     # will be to screen edge - window would shrink.
     Key([mod, "control"], "h", lazy.layout.shrink_main(), lazy.layout.grow_left() , desc="Grow window to the left (Columns), Shrink master (Monad)"),
     Key([mod, "control"], "l", lazy.layout.grow_main(), lazy.layout.grow_right(), desc="Grow window to the right (Columns), Grow maser (Monad)"),
-    Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
-    Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
+    Key([mod, "control"], "j", lazy.layout.grow_down(), lazy.layout.shrink(), desc="Grow window down (Columns), shrink secondary (Monad)"),
+    Key([mod, "control"], "k", lazy.layout.grow_up(), lazy.layout.grow(), desc="Grow window up (Columns), grow secondary (Monad)"),
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
 
     # Focus screens

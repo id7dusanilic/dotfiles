@@ -1,7 +1,5 @@
 #!/bin/sh
 
-set -euo pipefail
-
 main() {
     # Running ps to get running processes and display in dmenu.
     selected="$(ps --user "$(id -u)" -F | \

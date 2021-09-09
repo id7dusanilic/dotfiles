@@ -11,13 +11,13 @@ echo $1 | grep -q '.zip$' && FILETYPE="zip"
 
 TMP_DIR_NAME="/tmp/tmp_font_install"
 case $FILETYPE in
-    ".tar.gz")
+    "tar.gz")
         tar -xvzf $1 -C $TMP_DIR_NAME
         ;;
-    ".tar")
+    "tar")
         tar -xvf $1 -C $TMP_DIR_NAME
         ;;
-    ".zip")
+    "zip")
         unzip $1 -d $TMP_DIR_NAME
         ;;
 esac

@@ -11,7 +11,7 @@
 # General aliases to improve terminal
 alias cp='cp -iv'               # confirm before overwriting something
 alias mv='mv -iv'               # confirm before overwriting something
-alias ls='exa --color=auto --group-directories-first'      # add color to ls
+alias ls='ls --color=auto --group-directories-first'      # add color to ls
 alias l.='ls -ld .*'            # list hidden files in long format
 alias ll='ls -l '               # list in long format
 alias la='ls -la'               # list all files in long format
@@ -56,7 +56,7 @@ export TERM=st
 export DMENU_COMMAND="rofi -dmenu"
 
 # Expand PATH variable
-export PATH=$PATH:$HOME/.local/bin/dmenu_scripts:$HOME/.local/bin/scripts
+#export PATH=$PATH:$HOME/.local/bin/dmenu_scripts:$HOME/.local/bin/scripts
 
 # History settings
 shopt -s cmdhist                # multiple commands on one line show up as a single line

@@ -8,14 +8,14 @@
 xrdb $HOME/.Xresources
 
 # Set environment variables
-export PATH=$PATH:$HOME/.local/bin/dmenu_scripts:$HOME/.local/bin/scripts
+export PATH=$PATH:$HOME/.local/bin/dmenu_scripts:$HOME/.local/bin/scripts:$HOME/.local/bin
 
 # Default text editor
-export EDITOR=/usr/bin/vim
-export VISUAL=/usr/bin/vim
+export EDITOR=/usr/bin/nvim
+export VISUAL=/usr/bin/nvim
 
 # Default browser
-export BROWSER=/usr/bin/qutebrowser
+export BROWSER=/usr/local/bin/qutebrowser
 
 # Default terminal emulator, to be used by other scripts
 export TERM_EMULATOR=/usr/local/bin/st
