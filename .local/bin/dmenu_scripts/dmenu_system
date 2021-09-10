@@ -12,6 +12,6 @@ cmds="\
 勒 reboot		systemctl reboot
  shutdown		systemctl poweroff"
 
-choice="$(echo "$cmds" | cut -f 1 | ${DMENU_COMMAND} -l 7 -i -p "System options")" || exit 1
+choice="$(echo "$cmds" | cut -f 1 | ${DMENU_COMMAND} -l 6 -i -p "System options")" || exit 1
 
 `echo "$cmds" | grep "^$choice	" | cut -f 2-`

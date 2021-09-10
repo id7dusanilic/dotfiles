@@ -55,8 +55,10 @@ export TERM=st
 # dmenu command used in scripts
 export DMENU_COMMAND="rofi -dmenu"
 
-# Expand PATH variable
-#export PATH=$PATH:$HOME/.local/bin/dmenu_scripts:$HOME/.local/bin/scripts
+# Export Xilinx Licence File
+export XILINX_VIVADO=/tools/Xilinx/Vivado/2020.2
+export PATH=$PATH:$HOME/xilinx/vivado/Vivado/2020.2/bin
+export XILINXD_LICENSE_FILE=2300@192.168.0.111
 
 # History settings
 shopt -s cmdhist                # multiple commands on one line show up as a single line

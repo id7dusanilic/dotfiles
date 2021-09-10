@@ -67,6 +67,9 @@ def basic_elements():
         widget.WindowName(),
         widget.Spacer(),
         IPAddress(
+            interface='enxcc483a862030',
+        ),
+        IPAddress(
             interface='wlp59s0',
         ),
         widget.Wlan(

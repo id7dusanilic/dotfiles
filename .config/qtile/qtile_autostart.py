@@ -16,6 +16,8 @@ def autostart():
     os.system("xrandr --output eDP-1 --off")
     os.system("xrandr --output DP-2-2 --left-of DP-1-2")
     os.system("xrandr --output DP-2-2 --primary")
+    # Start dunst notfication deamon
+    os.system("dunst &")
     # Set wallpaper
     os.system("set_wallpaper")
     # Setup keybindings

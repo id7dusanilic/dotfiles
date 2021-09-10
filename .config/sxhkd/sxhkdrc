@@ -73,15 +73,16 @@ super + F12
 # Unmount a drive
 super + F11
 	dmenu_unmount
+
 # Audio control
 XF86AudioMute
-	pamixer -t
+    amixer -D pulse set Master 1+ toggle
 
 super + alt + m
-	pamixer -t
+    amixer -D pulse set Master 1+ toggle
 
 XF86Audio{Raise,Lower}Volume
-	pamixer --allow-boost {-i,-d} 5
+	amixer -D pulse sset Master 5%{+,-}
 
 super + alt + {k,j}
-	pamixer --allow-boost {-i,-d} 5
+	amixer -D pulse sset Master 5%{+,-}
