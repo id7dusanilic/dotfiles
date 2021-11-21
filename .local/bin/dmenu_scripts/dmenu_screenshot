@@ -57,7 +57,7 @@ selected_output=$(echo -e "${opt_file}\n${opt_clipboard}" | ${DMENU_COMMAND} -i 
     rm "/tmp/${tmp_name}" && \
     exit 0
 
-name=$(echo "" | ${DMENU_COMMAND} -p "Enter screenshot name")
+name=$(echo "" | ${DMENU_COMMAND} -p "Enter screenshot name" -l 0)
 [ -z "${name}" ] && name=${tmp_name}
 mkdir -p "${screenshots_path}" && cp "/tmp/${tmp_name}" "${screenshots_path}/${name}" && \
     notify-send -i "/tmp/${tmp_name}" "Screenshot Script" "Saved ${name} in ${screenshots_path}"

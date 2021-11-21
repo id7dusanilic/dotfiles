@@ -25,7 +25,10 @@ class IPAddress(base.ThreadPoolText):
 
         Function returning a string with IPV4 address of a given interface.
         """
-        return self.format.format(interface=self.interface.upper(), ipaddress=self.get_ipaddr())
+        if self.get_ipaddr():
+            return self.format.format(interface=self.interface.upper(), ipaddress=self.get_ipaddr())
+        else:
+            return ""
 
     def get_ipaddr(self):
         return subprocess.check_output(

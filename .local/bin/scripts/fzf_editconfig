@@ -9,10 +9,7 @@ nvim		$HOME/.config/nvim/init.vim
 sxhkd		$HOME/.config/sxhkd/sxhkdrc
 ranger		$HOME/.config/ranger/rc.conf
 zathura		$HOME/.config/zathura/zathurarc
-mpv			$HOME/.config/mpv/input.conf
-alacritty	$HOME/.config/alacritty/alacritty.yml
-kitty		$HOME/.config/kitty/kitty.conf
-vifm		$HOME/.config/vifm/vifmrc"
+mpv			$HOME/.config/mpv/input.conf"
 
 choice=$(echo "${config_files}" | cut -f 1 | fzf) || exit 1
 

@@ -8,23 +8,6 @@
 # Enable bash_completion
 [ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
 
-# General aliases to improve terminal
-alias cp='cp -iv'               # confirm before overwriting something
-alias mv='mv -iv'               # confirm before overwriting something
-alias ls='exa --color=auto --group-directories-first'      # add color to ls
-alias l.='ls -ld .*'            # list hidden files in long format
-alias ll='ls -l '               # list in long format
-alias la='ls -la'               # list all files in long format
-alias grep='grep --color=auto'  # add color to grep
-alias ccat='highlight --out-format=ansi'    # Colored cat with syntax highlight
-
-# Misc aliases
-alias dotfiles='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
-alias ec='fzf_editconfig'
-alias gs='git status'
-alias e='nvim'
-alias p='sudo pacman'
-
 # Allow root X Server access
 xhost +local:root > /dev/null 2>&1
 
@@ -48,8 +31,8 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 export HISTIGNORE='ls:ll:la:gs:pwd:history:clear:cd:startx:htop:top:ranger:lsblk:neofetch'
 
 # Create the directory if it doesn't exist first
-#[ -d "$XDG_DATA_HOME/bash" ] || mkdir -p $XDG_DATA_HOME/bash
-#export HISTFILE="$XDG_DATA_HOME/bash/history"   # Declutter $HOME
+[[ -n $XDG_DATA_HOME && -d "$XDG_DATA_HOME/bash" ]] || mkdir -p $XDG_DATA_HOME/bash
+[ -n $XDG_DATA_HOME ] && export HISTFILE="$XDG_DATA_HOME/bash/history"   # Declutter $HOME
 
 # ~ Clean-up
 export WGETRC="$HOME/.config/wget/wgetrc"
@@ -63,3 +46,15 @@ export PS1="\[$(tput bold)\]\[$(tput setaf 2)\] \w \\$ \[$(tput sgr0)\]"
 # export PS1="\u: \W $ "
 # export PS1='\[\033[01;32m\][\u@\h\[\033[01;37m\] \W\[\033[01;32m\]]\$\[\033[00m\] '
 # export PS1='\[\033[01;32m\][\u \W\[\033[01;32m\]]\$\[\033[00m\] '
+
+# General aliases to improve terminal
+alias cp='cp -iv'               # confirm before overwriting something
+alias mv='mv -iv'               # confirm before overwriting something
+alias ls='exa --color=auto --group-directories-first'      # add color to ls
+alias l.='ls -ld .*'            # list hidden files in long format
+alias ll='ls -l '               # list in long format
+alias la='ls -la'               # list all files in long format
+alias grep='grep --color=auto'  # add color to grep
+
+# Misc aliases
+[ -e $HOME/.local/share/random_aliases ] && source $HOME/.local/share/random_aliases

@@ -61,6 +61,7 @@ floating_layout = layout.Floating(float_rules=[
     Match(wm_class='maketag'),  # gitk
     Match(wm_class='ssh-askpass'),  # ssh-askpass
     Match(wm_class='Thunar'),  # thunar
+    Match(wm_class='matplotlib'),  # matplotlib
     Match(title='calcurse'),  # calcurse
     Match(title='branchdialog'),  # gitk
     Match(title='pinentry'),  # GPG key password entry
