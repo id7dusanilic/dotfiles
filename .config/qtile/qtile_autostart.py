@@ -13,9 +13,7 @@ from libqtile import hook
 @hook.subscribe.startup_once
 def autostart():
     # Setup monitors
-    os.system("xrandr --output eDP-1 --off")
-    os.system("xrandr --output DP-2-2 --left-of DP-1-2")
-    os.system("xrandr --output DP-2-2 --primary")
+    os.system("autorandr -c")
     # Start dunst notfication deamon
     os.system("dunst &")
     # Set wallpaper
@@ -24,7 +22,5 @@ def autostart():
     os.system("sxhkd -m 1 &")
     # Start systray network manager
     os.system("nm-applet &")
-    # Allow transparent windows
-    # os.system("xcompmgr &")
     # Initialize keyboard layout
     os.system("keyboard_layout --set us")

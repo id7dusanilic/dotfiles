@@ -4,6 +4,7 @@
 from libqtile import bar, widget
 from qtile_colors import *
 from ipaddress_widget import IPAddress
+from custom_volume_widget import CustomVolume
 
 import subprocess
 
@@ -66,24 +67,63 @@ def basic_elements():
         ),
         widget.WindowName(),
         widget.Spacer(),
+        calendar,
+        clock,
+    ]
+    return tmp
+
+def status_elements():
+    tmp = [
+        widget.GroupBox(
+            active = colors[3],
+            inactive = colors[2],
+            block_highlight_text_color = colors[3],
+            disable_drag = True,
+            highlight_method = 'block',
+            this_screen_border = colors[0],
+            this_current_screen_border = colors[0],
+            other_current_screen_border = colors[1],
+            other_screen_border = colors[1],
+            padding = 5,
+            border = 0,
+            hide_unused=True,
+        ),
+        widget.CurrentLayoutIcon(
+            scale = 0.7,
+        ),
+        widget.CurrentScreen(
+            active_text = '',
+            inactive_text = ' ',
+            active_color = colors[0],
+        ),
+        widget.WindowName(),
+        widget.Spacer(),
+        widget.CPUGraph(),
         IPAddress(
             interface='enxcc483a862030',
+            padding = 5,
         ),
         IPAddress(
             interface='wlp59s0',
+            padding = 5,
         ),
         widget.Wlan(
             interface='wlp59s0',
-            disconnected_message = '[ WIFI: Disconnected ]',
+#           disconnected_message = '[ WIFI: Disconnected ]',
+            disconnected_message = '',
             format = '[ WIFI: {essid} {percent:2.0%} ]',
+            padding = 5,
         ),
 #        widget.Net(
 #            format = '[ NET:{down} ↓↑{up} ]',
 #            padding = 5,
 #        ),
-        widget.PulseVolume(
-            fmt = '[ VOL: {} ]',
-            padding = 5,
+#        widget.PulseVolume(
+#            fmt = '[ VOL: {} ]',
+#            padding = 5,
+#        ),
+        CustomVolume(
+            padding = 5
         ),
         RAM_monitor,
         battery_monitor,
@@ -108,7 +148,7 @@ def sec_bar():
     return tmp_bar
 
 def main_bar():
-    tmp = basic_elements()
+    tmp = status_elements()
     tmp.append(widget.Systray())
     tmp_bar =  bar.Bar(
         tmp,

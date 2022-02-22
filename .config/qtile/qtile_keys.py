@@ -74,6 +74,9 @@ keys = [
 
     # Toggle ranger scratchpad
     Key([mod], 's', lazy.group['scratchpad'].dropdown_toggle('ranger_scratchpad')),
+
+    # Toggle terminal scratchpad
+    Key([mod], 'x', lazy.group['scratchpad'].dropdown_toggle('terminal_scratchpad')),
 ]
 
 for index, g in enumerate(groups):

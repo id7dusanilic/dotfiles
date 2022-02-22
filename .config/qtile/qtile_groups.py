@@ -23,5 +23,12 @@ groups = [
                  width=0.9,
                  x=0.05,
                  y=0,
+                 on_focus_lost_hide=True,),
+                 DropDown("terminal_scratchpad",
+                 "st",
+                 height=0.5,
+                 width=0.5,
+                 x=0.25,
+                 y=0.25,
                  on_focus_lost_hide=True,)]),
 ]

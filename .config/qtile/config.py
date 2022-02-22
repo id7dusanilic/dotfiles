@@ -33,7 +33,7 @@ screens = [
         bottom = main_bar(),
     ),
     Screen(
-        bottom = sec_bar(),
+        top = sec_bar(),
         ),
 ]
 
@@ -61,7 +61,10 @@ floating_layout = layout.Floating(float_rules=[
     Match(wm_class='maketag'),  # gitk
     Match(wm_class='ssh-askpass'),  # ssh-askpass
     Match(wm_class='Thunar'),  # thunar
+    Match(wm_class='pavucontrol'),  # pavucontrol
+    Match(wm_class='matplotlib'),  # matplotlib
     Match(title='calcurse'),  # calcurse
+    Match(title='bluetoothctl'),  # bluetoothctl
     Match(title='branchdialog'),  # gitk
     Match(title='pinentry'),  # GPG key password entry
 ], border_focus='#005577', border_width=3)

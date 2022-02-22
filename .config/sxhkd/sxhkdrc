@@ -74,6 +74,10 @@ super + F12
 super + F11
 	dmenu_unmount
 
+# Open bluetoothctl terminal
+super + alt + b
+	$TERM_EMULATOR -e bluetoothctl
+
 # Audio control
 XF86AudioMute
     amixer -D pulse set Master 1+ toggle
@@ -86,3 +90,6 @@ XF86Audio{Raise,Lower}Volume
 
 super + alt + {k,j}
 	amixer -D pulse sset Master 5%{+,-}
+
+super + alt + v
+    pavucontrol
