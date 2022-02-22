@@ -5,13 +5,16 @@
 # Do not source if the shell is not interactive
 # [[ $- != *i* ]] && return
 
+# Enable vi mode
+# set -o vi
+
 # Enable bash_completion
 [ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
 
 # General aliases to improve terminal
 alias cp='cp -iv'               # confirm before overwriting something
 alias mv='mv -iv'               # confirm before overwriting something
-alias ls='ls --color=auto --group-directories-first'      # add color to ls
+command -v exa > /dev/null 2>&1 && alias ls='exa'|| alias ls='ls --color=auto --group-directories-first'      # add color to ls
 alias l.='ls -ld .*'            # list hidden files in long format
 alias ll='ls -l '               # list in long format
 alias la='ls -la'               # list all files in long format
@@ -23,7 +26,7 @@ alias dotfiles='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 alias ec='fzf_editconfig'
 alias gs='git status'
 alias e='nvim'
-alias p='sudo pacman'
+alias eh="e $HISTFILE"
 
 # Allow root X Server access
 xhost +local:root > /dev/null 2>&1
@@ -35,6 +38,9 @@ shopt -s checkwinsize
 
 # Auto cd into directories
 shopt -s autocd
+
+# Setup environment
+[ -f $HOME/.local/share/setup_env.sh ] && source $HOME/.local/share/setup_env.sh
 
 # Fuzzy finder default options
 export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
@@ -57,8 +63,8 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 export HISTIGNORE='ls:ll:la:gs:pwd:history:clear:cd:startx:htop:top:ranger:lsblk:neofetch:python'
 
 # Create the directory if it doesn't exist first
-#[ -d "$XDG_DATA_HOME/bash" ] || mkdir -p $XDG_DATA_HOME/bash
-#export HISTFILE="$XDG_DATA_HOME/bash/history"   # Declutter $HOME
+[ -d "$XDG_DATA_HOME/bash" ] || mkdir -p $XDG_DATA_HOME/bash
+export HISTFILE="$XDG_DATA_HOME/bash/history"   # Declutter $HOME
 
 # ~ Clean-up
 export WGETRC="$HOME/.config/wget/wgetrc"
