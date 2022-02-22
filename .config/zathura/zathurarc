@@ -8,6 +8,7 @@ set adjust-open width
 set font "mononoki NF 11"
 
 set statusbar-bg "#005577"
+set default-bg "#222222"
 
 # Keybindigs
 # map g goto

@@ -15,6 +15,7 @@ export EDITOR=/usr/bin/nvim
 export VISUAL=/usr/bin/nvim
 
 # Default browser
+# export BROWSER=/usr/bin/firefox
 export BROWSER=/usr/local/bin/qutebrowser
 
 # Default terminal emulator, to be used by other scripts

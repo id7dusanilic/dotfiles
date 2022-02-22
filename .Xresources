@@ -1,3 +1,7 @@
+! CURSOR
+Xcursor.theme: whiteglass
+Xcursor.size: 16
+
 ! COLORS FOR SXIV
 Sxiv.foreground:   #005577
 Sxiv.background:   #222222

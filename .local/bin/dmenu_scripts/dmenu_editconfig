@@ -10,6 +10,7 @@ config_files="\
 bashrc		$HOME/.bashrc
 vim			$HOME/.vim/vimrc
 nvim		$HOME/.config/nvim/init.vim
+qtile		$HOME/.config/qtile
 sxhkdrc		$HOME/.config/sxhkd/sxhkdrc
 ranger		$HOME/.config/ranger/rc.conf
 zathura		$HOME/.config/zathura/zathurarc

@@ -33,27 +33,15 @@ xhost +local:root > /dev/null 2>&1
 # it regains control.
 shopt -s checkwinsize
 
-
 # Auto cd into directories
 shopt -s autocd
 
 # Fuzzy finder default options
 export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 
-# Default text editor
-export EDITOR=/usr/bin/nvim
-export VISUAL=/usr/bin/nvim
-
-# Default browser
-# export BROWSER=/usr/bin/brave
-export BROWSER=/usr/bin/qutebrowser
-
 # Default terminal emulator, to be used by other scripts
 export TERM_EMULATOR=/usr/local/bin/st
 export TERM=st
-
-# dmenu command used in scripts
-export DMENU_COMMAND="rofi -dmenu"
 
 # Export Xilinx Licence File
 export XILINX_VIVADO=/tools/Xilinx/Vivado/2020.2
@@ -66,7 +54,7 @@ shopt -s histappend             # Enable history appending instead of overwritin
 export HISTCONTROL=ignoreboth:erasedups   # ignore duplicates in command history
 export HISTSIZE=1000            # increase history size to 1000 lines
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
-export HISTIGNORE='ls:ll:la:gs:pwd:history:clear:cd:startx:htop:top:ranger:lsblk:neofetch'
+export HISTIGNORE='ls:ll:la:gs:pwd:history:clear:cd:startx:htop:top:ranger:lsblk:neofetch:python'
 
 # Create the directory if it doesn't exist first
 #[ -d "$XDG_DATA_HOME/bash" ] || mkdir -p $XDG_DATA_HOME/bash
