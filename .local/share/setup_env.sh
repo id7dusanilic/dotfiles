@@ -13,7 +13,6 @@ export BROWSER=/usr/local/bin/qutebrowser
 
 # Default terminal emulator, to be used by other scripts
 export TERM_EMULATOR=/usr/local/bin/st
-export TERM=st
 
 # dmenu command used in scripts
 export DMENU_COMMAND="rofi -dmenu"

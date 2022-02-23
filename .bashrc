@@ -27,6 +27,8 @@ alias ec='fzf_editconfig'
 alias gs='git status'
 alias e='nvim'
 alias eh="e $HISTFILE"
+alias sch='ssh user@192.168.0.111'
+alias ssh110='ssh user@192.168.0.110'
 
 # Allow root X Server access
 xhost +local:root > /dev/null 2>&1
@@ -47,7 +49,6 @@ export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 
 # Default terminal emulator, to be used by other scripts
 export TERM_EMULATOR=/usr/local/bin/st
-export TERM=st
 
 # Export Xilinx Licence File
 export XILINX_VIVADO=/tools/Xilinx/Vivado/2020.2
@@ -78,3 +79,5 @@ export PS1="\[$(tput bold)\]\[$(tput setaf 2)\] \w \\$ \[$(tput sgr0)\]"
 # export PS1="\u: \W $ "
 # export PS1='\[\033[01;32m\][\u@\h\[\033[01;37m\] \W\[\033[01;32m\]]\$\[\033[00m\] '
 # export PS1='\[\033[01;32m\][\u \W\[\033[01;32m\]]\$\[\033[00m\] '
+
+export QSYS_ROOTDIR="/home/dusan/intelFPGA_lite/20.1/quartus/sopc_builder/bin"
