@@ -2,6 +2,9 @@
 #
 # ~/.xinitrc
 
+# Numlock on
+numlockx on
+
 # Read Xresources
 xrdb $HOME/.Xresources
 
