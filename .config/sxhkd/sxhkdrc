@@ -2,6 +2,9 @@
 super + w
 	$BROWSER
 
+Menu
+	$TERM_EMULATOR
+
 # Open file manager
 super + r
 	$TERM_EMULATOR -e ranger
@@ -70,6 +73,15 @@ super + shift + p
 super + F12
 	dmenu_mount
 
+XF86Calculator
+	st -c floating_st -e python3 -q
+
+XF86Mail
+	sxiv -g 1100x1100 -sf -b ~/Downloads/conversions.png
+
+super + i
+	zathura ~/Downloads/kuiper_interfaces_evaluation.pdf
+
 # Unmount a drive
 super + F11
 	dmenu_unmount
@@ -88,8 +100,17 @@ super + alt + m
 XF86Audio{Raise,Lower}Volume
 	amixer -D pulse sset Master 5%{+,-}
 
+XF86MonBrightness{Up,Down}
+	xbacklight {+,-} 10
+
 super + alt + {k,j}
 	amixer -D pulse sset Master 5%{+,-}
 
 super + alt + v
     pavucontrol
+
+alt + o; g
+	chromium https://gitlab.com/irena1/kuiper_gw_modem/-/tree/pynq_verification
+
+alt + o; 7; {2,3}
+	chromium 192.168.0.7{2,3}:9090/lab?

@@ -4,12 +4,13 @@
 export PATH=$PATH:$HOME/.local/bin/dmenu_scripts:$HOME/.local/bin/scripts:$HOME/.local/bin
 
 # Default text editor
-export EDITOR=/usr/bin/nvim
-export VISUAL=/usr/bin/nvim
+export EDITOR=/snap/bin/nvim
+export VISUAL=/snap/bin/nvim
 
 # Default browser
 # export BROWSER=/usr/bin/firefox
-export BROWSER=/usr/local/bin/qutebrowser
+# export BROWSER=/usr/local/bin/qutebrowser
+export BROWSER=chromium
 
 # Default terminal emulator, to be used by other scripts
 export TERM_EMULATOR=/usr/local/bin/st

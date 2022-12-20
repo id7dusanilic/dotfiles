@@ -14,10 +14,14 @@
 # General aliases to improve terminal
 alias cp='cp -iv'               # confirm before overwriting something
 alias mv='mv -iv'               # confirm before overwriting something
-command -v exa > /dev/null 2>&1 && alias ls='exa'|| alias ls='ls --color=auto --group-directories-first'      # add color to ls
+command -v exa > /dev/null 2>&1 && alias ls='exa --group-directories-first'|| alias ls='ls --color=auto --group-directories-first'      # add color to ls
+command -v lsd > /dev/null 2>&1 && alias ls='lsd --group-dirs first'|| alias ls='ls --color=auto --group-directories-first'      # add color to ls
 alias l.='ls -ld .*'            # list hidden files in long format
 alias ll='ls -l '               # list in long format
+alias l='ll'
 alias la='ls -la'               # list all files in long format
+alias llt='ll --tree'
+alias lat='la --tree'
 alias grep='grep --color=auto'  # add color to grep
 alias ccat='highlight --out-format=ansi'    # Colored cat with syntax highlight
 
@@ -26,9 +30,14 @@ alias dotfiles='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 alias ec='fzf_editconfig'
 alias gs='git status'
 alias e='nvim'
-alias eh="e $HISTFILE"
+alias eh='e $HISTFILE'
 alias sch='ssh user@192.168.0.111'
 alias ssh110='ssh user@192.168.0.110'
+alias ssh72='ssh root@192.168.0.72'
+alias ssh73='ssh root@192.168.0.73'
+alias bat='batcat'
+alias r='ranger'
+alias :wq='exit'
 
 # Allow root X Server access
 xhost +local:root > /dev/null 2>&1
@@ -51,8 +60,8 @@ export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 export TERM_EMULATOR=/usr/local/bin/st
 
 # Export Xilinx Licence File
-export XILINX_VIVADO=/tools/Xilinx/Vivado/2020.2
-export PATH=$PATH:$HOME/xilinx/vivado/Vivado/2020.2/bin
+export XILINX_VIVADO=/tools/Xilinx/Vivado/2021.1
+export PATH=$PATH:$XILINX_VIVADO/bin
 export XILINXD_LICENSE_FILE=2300@192.168.0.111
 
 # History settings
@@ -60,8 +69,8 @@ shopt -s cmdhist                # multiple commands on one line show up as a sin
 shopt -s histappend             # Enable history appending instead of overwriting
 export HISTCONTROL=ignoreboth:erasedups   # ignore duplicates in command history
 export HISTSIZE=1000            # increase history size to 1000 lines
-export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
-export HISTIGNORE='ls:ll:la:gs:pwd:history:clear:cd:startx:htop:top:ranger:lsblk:neofetch:python'
+export PROMPT_COMMAND="history -a; history -c; history -r;"
+export HISTIGNORE='ls*:ll*:la:gs:pwd:history:clear:cd*:startx:htop:top:ranger:lsblk:neofetch:python:e *:ping*'
 
 # Create the directory if it doesn't exist first
 [ -d "$XDG_DATA_HOME/bash" ] || mkdir -p $XDG_DATA_HOME/bash

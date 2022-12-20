@@ -38,4 +38,12 @@ layouts = [
         ratio = 0.6,
         **shared_config
     ),
+    layout.TreeTab(
+        font='Mononoki Nerd Font',
+        fontsize=13,
+        bg_color='222222',
+        active_bg=colors[0],
+        place_right=False,
+        panel_width=250,
+    ),
 ]

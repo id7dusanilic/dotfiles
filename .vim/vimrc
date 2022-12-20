@@ -16,7 +16,7 @@ set number relativenumber
 " Tabs
 set tabstop=4
 set shiftwidth=4
-" set expandtab
+set expandtab
 
 " Clipboard
 set clipboard=unnamedplus
@@ -28,7 +28,6 @@ set viminfo+=n~/.config/vim/viminfo
 set mouse=a
 
 " Keybindings
-nmap ; :
 vmap q <Esc>
 imap jk <Esc>
 nmap j gj
@@ -40,9 +39,14 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
+
+" Clear trailing whitespace
+nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
+
 " Misc
 set title
 " set hidden
 
 " Colors
 syntax enable
+colorscheme atom-dark-256

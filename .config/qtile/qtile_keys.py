@@ -77,6 +77,9 @@ keys = [
 
     # Toggle terminal scratchpad
     Key([mod], 'x', lazy.group['scratchpad'].dropdown_toggle('terminal_scratchpad')),
+
+    # Toggle terminal scratchpad
+    Key([mod, "shift"], 's', lazy.group['scratchpad'].dropdown_toggle('remote_scratchpad')),
 ]
 
 for index, g in enumerate(groups):

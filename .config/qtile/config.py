@@ -35,6 +35,9 @@ screens = [
     Screen(
         top = sec_bar(),
         ),
+    Screen(
+        top = sec_bar(),
+        ),
 ]
 
 # Drag floating layouts.
@@ -63,6 +66,8 @@ floating_layout = layout.Floating(float_rules=[
     Match(wm_class='Thunar'),  # thunar
     Match(wm_class='pavucontrol'),  # pavucontrol
     Match(wm_class='matplotlib'),  # matplotlib
+    Match(wm_class='floating_st'),
+    Match(wm_class='sxiv'),
     Match(title='calcurse'),  # calcurse
     Match(title='bluetoothctl'),  # bluetoothctl
     Match(title='branchdialog'),  # gitk

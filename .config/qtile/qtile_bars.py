@@ -20,6 +20,7 @@ battery_monitor = \
         update_interval = 5,
         notify_below = 10,
         format = '[ {char}: {percent:2.0%} ]',
+        show_short_text = False,
         padding = 5,
     )
 
@@ -98,13 +99,29 @@ def status_elements():
         ),
         widget.WindowName(),
         widget.Spacer(),
-        widget.CPUGraph(),
+        # widget.CPUGraph(),
+        widget.CPU(
+            fmt = '[ CPU: {} ]',
+            padding = 5,
+            format = '{freq_current}GHz {load_percent}%',
+        ),
+        widget.ThermalSensor(
+            tag_sensor = 'Package id 0',
+            padding = 5,
+            fmt = '[ TEMP: {} ]',
+            threshold = 70,
+            update_interval = 1,
+        ),
         IPAddress(
             interface='enxcc483a862030',
             padding = 5,
         ),
         IPAddress(
             interface='wlp59s0',
+            padding = 5,
+        ),
+        IPAddress(
+            interface='tun0',
             padding = 5,
         ),
         widget.Wlan(
